@@ -906,6 +906,41 @@ function homePage() {
     })
     .join("\n");
 
+  const expertRows = [
+    {
+      expert: "Rheumatology lens",
+      clinical: "The sacroiliitis signal is prioritized because confirming or excluding inflammatory arthritis can change long-term management.",
+      plain: "The pelvis-spine joint finding comes first because, if it is inflammatory, treating it early can matter a lot.",
+      icon: "stethoscope"
+    },
+    {
+      expert: "Orthopedic / physical therapy lens",
+      clinical: "The hip, knee, lumbar spine, and SI findings should be interpreted together because altered mechanics in one area can overload the others.",
+      plain: "The hip, knee, back, and pelvis can all affect each other, so the plan should look at the whole movement system.",
+      icon: "activity"
+    },
+    {
+      expert: "Dermatology and ENT lens",
+      clinical: "Hair loss, skin findings, and ear/allergy symptoms appear lower urgency, but pending tests can identify correctable causes.",
+      plain: "The skin, hair, and ear issues are usually less urgent, but the tests are still useful because some causes are fixable.",
+      icon: "clipboard-check"
+    },
+    {
+      expert: "Patient-priority lens",
+      clinical: "The goal is to reduce uncertainty: confirm the highest-consequence diagnosis, start conservative rehab, and monitor lower-risk findings.",
+      plain: "The goal is simple: confirm the biggest question first, start rehab, and keep an eye on the less risky findings.",
+      icon: "user-round-check"
+    }
+  ]
+    .map((row) => `<div class="grid gap-3 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div class="flex items-center gap-3">
+        <span class="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-slate-50 text-indigo-600"><i data-lucide="${row.icon}" class="h-4 w-4"></i></span>
+        <p class="text-sm font-black text-slate-950">${escapeHtml(row.expert)}</p>
+      </div>
+      <p class="text-sm leading-6 text-slate-600">${modeText(row.clinical, row.plain)}</p>
+    </div>`)
+    .join("\n");
+
   return layout({
     title: "Rasha Bakar - Clinical Dashboard",
     body: `<main class="relative">
@@ -940,6 +975,15 @@ function homePage() {
       </div>
       <div class="rounded-lg border border-slate-200 bg-white shadow-sm">${snapshotRows}</div>
     </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mb-5">
+      <p class="text-sm font-black uppercase tracking-wide text-indigo-600">${modeText("Expert analysis", "Why this matters")}</p>
+      <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">${modeText("How an expert would read this", "How to think about the reports")}</h2>
+      <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600">${modeText("This is not a new diagnosis; it is a structured interpretation of the report pattern from multiple clinical angles.", "This section explains why the page focuses on some findings first and others later.")}</p>
+    </div>
+    <div class="rounded-lg border border-slate-200 bg-white shadow-sm">${expertRows}</div>
   </section>
 
   <section id="start-plan" class="section-anchor mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
