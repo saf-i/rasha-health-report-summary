@@ -941,6 +941,26 @@ function homePage() {
     </div>`)
     .join("\n");
 
+  const patternRows = [
+    ["Sacroiliitis", "Yes", "Strongest clue for inflammatory arthritis"],
+    ["Hip inflammation / peritrochanteric edema", "Yes", "Could fit a broader inflammatory or mechanical pattern"],
+    ["Knee synovitis / effusion", "Yes", "Inflamed knee fluid makes the joint pattern more important"],
+    ["Low back pain", "Yes", "Can be inflammatory, mechanical, or both"],
+    ["Hair loss and scalp lymph nodes", "Possibly", "Could be stress/nutrition/hormonal, but inflammation should be checked"],
+    ["Skin rash", "Possibly", "May be fungal, but psoriasis/immune skin disease should stay on the radar"],
+    ["Ear / Eustachian symptoms", "Usually separate", "Most likely allergy/ENT-related unless other symptoms connect it"]
+  ]
+    .map(([finding, connected, reason]) => `<tr class="border-b border-slate-200 last:border-b-0">
+      <td class="px-4 py-3 font-bold text-slate-950">${escapeHtml(finding)}</td>
+      <td class="px-4 py-3 text-sm font-bold text-slate-700">${escapeHtml(connected)}</td>
+      <td class="px-4 py-3 text-sm leading-6 text-slate-600">${escapeHtml(reason)}</td>
+    </tr>`)
+    .join("\n");
+
+  const missingLabs = ["HLA-B27", "ANA", "RF", "Anti-CCP", "CRP", "ESR", "CBC", "CMP", "Ferritin", "Vitamin D", "Vitamin B12", "TSH / free T4", "Testosterone / DHEA-S if androgen excess is suspected"]
+    .map((lab) => `<span class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700">${escapeHtml(lab)}</span>`)
+    .join("\n");
+
   return layout({
     title: "Rasha Bakar - Clinical Dashboard",
     body: `<main class="relative">
@@ -984,6 +1004,36 @@ function homePage() {
       <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600">${modeText("This is not a new diagnosis; it is a structured interpretation of the report pattern from multiple clinical angles.", "This section explains why the page focuses on some findings first and others later.")}</p>
     </div>
     <div class="rounded-lg border border-slate-200 bg-white shadow-sm">${expertRows}</div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mb-5">
+      <p class="text-sm font-black uppercase tracking-wide text-indigo-600">${modeText("Connected patterns", "Could these be related?")}</p>
+      <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">${modeText("One unifying process is possible", "Some findings may be connected")}</h2>
+      <p class="mt-3 max-w-3xl text-sm leading-6 text-slate-600">${modeText("Across the reports, the most important question is whether the sacroiliitis, hip edema, knee synovitis/effusion, and chronic back pain represent one inflammatory disease process rather than separate problems.", "The biggest question is whether the back, pelvis, hip, and knee findings are part of one inflammation problem, instead of random separate issues.")}</p>
+    </div>
+    <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div class="table-wrap">
+        <table class="w-full border-collapse text-left text-sm">
+          <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th class="px-4 py-3">Finding</th><th class="px-4 py-3">Could connect?</th><th class="px-4 py-3">Why it matters</th></tr></thead>
+          <tbody>${patternRows}</tbody>
+        </table>
+      </div>
+    </div>
+    <div class="mt-5 grid gap-4 md:grid-cols-2">
+      <div class="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-950">
+        <p class="text-sm font-black">${modeText("Most concerning pattern", "Most important pattern")}</p>
+        <p class="mt-2 text-sm leading-6">${modeText("Possible inflammatory autoimmune disease such as axial spondyloarthritis, ankylosing spondylitis, psoriatic arthritis, reactive arthritis, or another inflammatory arthritis.", "A rheumatologist should check whether this could be an inflammatory arthritis condition affecting more than one joint.")}</p>
+      </div>
+      <div class="rounded-lg border border-slate-200 bg-white p-4">
+        <p class="text-sm font-black text-slate-950">${modeText("Missing decision data", "Blood work that would help")}</p>
+        <p class="mt-2 text-sm leading-6 text-slate-600">${modeText("The current imaging pattern raises the question, but the blood work helps decide whether the findings are connected by inflammation, hormonal/metabolic issues, or separate problems.", "The scans raise the question, but blood tests help show whether this is one inflammation problem or several separate issues.")}</p>
+      </div>
+    </div>
+    <div class="mt-5 rounded-lg border border-slate-200 bg-white p-4">
+      <p class="text-sm font-black text-slate-950">${modeText("Labs to discuss with clinicians", "Tests to ask the doctors about")}</p>
+      <div class="mt-3 flex flex-wrap gap-2">${missingLabs}</div>
+    </div>
   </section>
 
   <section id="start-plan" class="section-anchor mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
