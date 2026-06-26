@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pityriasis Versicolor - Rasha Bakar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] },
+          colors: { ink: '#0f172a', muted: '#64748b', line: '#e2e8f0', stripe: '#635bff', mint: '#00d4aa' },
+          boxShadow: { soft: '0 8px 24px rgba(15, 23, 42, 0.05)', lift: '0 14px 34px rgba(15, 23, 42, 0.08)' }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #fff; }
+    .grid-bg { display: none; }
+    .section-anchor { scroll-margin-top: 104px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .table-wrap table { min-width: 760px; }
+    [data-mode-button][aria-pressed="true"] { background: #0f172a; color: #fff; border-color: #0f172a; }
+    @media (max-width: 760px) { .table-wrap { overflow-x: auto; } }
+  </style>
+</head>
+<body class="font-sans text-ink antialiased">
+  <div class="grid-bg pointer-events-none fixed inset-x-0 top-0 h-[520px]"></div>
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
+  <div class="mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+    <a href="../index.html" class="flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-xs font-black text-white">RB</span>
+      <span>
+        <span class="block text-sm font-black text-slate-950">Rasha Bakar</span>
+        <span class="block text-xs font-semibold text-slate-500">Clinical dashboard</span>
+      </span>
+    </a>
+    <nav class="no-scrollbar hidden items-center gap-2 overflow-x-auto md:flex">
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="../index.html">Home</a>
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="../index.html#start-plan">Start Plan</a>
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="../index.html#evidence">Evidence</a>
+    </nav>
+    <div class="hidden items-center rounded-md border border-slate-200 bg-white p-1 sm:flex" aria-label="Reading mode">
+      <button type="button" data-mode-button="clinical" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="true">Clinical</button>
+      <button type="button" data-mode-button="plain" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="false">Plain</button>
+    </div>
+    <a href="../index.html#diagnoses" class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-slate-800">
+      Diagnoses
+      <i data-lucide="arrow-right" class="h-4 w-4"></i>
+    </a>
+  </div>
+  <div class="border-t border-slate-200 px-4 py-2 sm:hidden">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-3">
+      <span class="text-xs font-black uppercase tracking-wide text-slate-500">Reading mode</span>
+      <div class="flex items-center rounded-md border border-slate-200 bg-white p-1" aria-label="Reading mode">
+        <button type="button" data-mode-button="clinical" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="true">Clinical</button>
+        <button type="button" data-mode-button="plain" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="false">Plain</button>
+      </div>
+    </div>
+  </div>
+</header>
+  <main class="relative">
+  <section class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <a href="../index.html#diagnoses" class="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-black text-slate-700 shadow-sm transition hover:bg-slate-50">
+      <i data-lucide="arrow-left" class="h-4 w-4"></i>
+      Back to all diagnoses
+    </a>
+    <div class="mt-8 border-b border-slate-200 pb-8">
+      <div class="mb-5 flex flex-wrap items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-md bg-lime-500 text-white"><i data-lucide="palette" class="h-5 w-5"></i></span>
+        <span class="rounded-md bg-lime-100 text-lime-800 px-3 py-1 text-xs font-black">Lower urgency</span>
+        <span class="rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-black text-slate-600">Severity 2/10</span>
+        <span class="rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-black text-slate-600">Dermatology</span>
+      </div>
+      <h1 class="max-w-3xl break-words text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Pityriasis Versicolor</h1>
+      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600"><span data-mode-text data-clinical="Superficial yeast-related discoloration on trunk skin" data-plain="Common yeast-related skin discoloration">Superficial yeast-related discoloration on trunk skin</span></p>
+    </div>
+  </section>
+
+  <section class="sticky top-[73px] z-30 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="no-scrollbar mx-auto flex w-full max-w-5xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
+      <a href="sacroiliitis.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+        Sacroiliitis
+      </a>
+<a href="hip-fai.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-sky-500"></span>
+        Hip FAI
+      </a>
+<a href="right-knee.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-cyan-500"></span>
+        Right Knee
+      </a>
+<a href="lumbar-discopathy.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+        Lumbar Spine
+      </a>
+<a href="telogen-effluvium.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+        Telogen Effluvium
+      </a>
+<a href="pityriasis-versicolor.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition bg-lime-100 text-lime-800 border-transparent">
+        <span class="h-2 w-2 rounded-full bg-lime-500"></span>
+        Pityriasis Versicolor
+      </a>
+<a href="eustachian-rhinitis.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-violet-500"></span>
+        ENT / Rhinitis
+      </a>
+<a href="incidental-findings.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-rose-500"></span>
+        Incidental
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <article class="grid gap-4">
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="file-text" class="h-5 w-5"></i></span>
+      <h2 class="text-xl font-black tracking-tight text-slate-950">Overview</h2>
+    </div>
+    <div class="text-sm leading-7 text-slate-650 text-slate-600"><p><span data-mode-text data-clinical="Pityriasis versicolor is a common superficial yeast overgrowth that changes skin pigmentation and can cause fine scale or mild itch." data-plain="This is a common, usually harmless yeast overgrowth on the skin that can cause lighter, darker, pink, or reddish patches.">Pityriasis versicolor is a common superficial yeast overgrowth that changes skin pigmentation and can cause fine scale or mild itch.</span></p><p class="mt-4"><span class="font-bold text-slate-950"><span data-mode-text data-clinical="Possible causes:" data-plain="What could cause it:">Possible causes:</span></span> <span data-mode-text data-clinical="Malassezia yeast that normally lives on the skin; Heat, humidity, sweating, and oily skin; Recurrence-prone skin environment" data-plain="A yeast that normally lives on skin; Heat, humidity, sweating, and oily skin; A tendency for the rash to come back">Malassezia yeast that normally lives on the skin; Heat, humidity, sweating, and oily skin; Recurrence-prone skin environment</span>.</p><p class="mt-4"><span class="font-bold text-slate-950"><span data-mode-text data-clinical="Report source:" data-plain="Where this came from:">Report source:</span></span> 7102750361.pdf.</p></div>
+  </section>
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="clipboard-list" class="h-5 w-5"></i></span>
+      <h2 class="text-xl font-black tracking-tight text-slate-950">Key Findings</h2>
+    </div>
+    <div class="text-sm leading-7 text-slate-650 text-slate-600"><ul class="space-y-2"><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Red varicolored macules on the inframammary region and back." data-plain="Colored patches were seen on the chest/under-breast area and back.">Red varicolored macules on the inframammary region and back.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Diagnosis recorded as preliminary." data-plain="The diagnosis was listed as preliminary.">Diagnosis recorded as preliminary.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Typical location for pityriasis versicolor." data-plain="The location fits this condition.">Typical location for pityriasis versicolor.</span></span></li></ul></div>
+  </section>
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="heart-pulse" class="h-5 w-5"></i></span>
+      <h2 class="text-xl font-black tracking-tight text-slate-950">Symptoms</h2>
+    </div>
+    <div class="text-sm leading-7 text-slate-650 text-slate-600"><ul class="space-y-2"><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Light, dark, pink, copper, or red-brown patches." data-plain="Light, dark, pink, or reddish patches.">Light, dark, pink, copper, or red-brown patches.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Fine scale." data-plain="Fine scaling.">Fine scale.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Mild itch or no symptoms." data-plain="Mild itch or no symptoms.">Mild itch or no symptoms.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Color contrast can become more visible after sun exposure." data-plain="More noticeable color changes after sun exposure.">Color contrast can become more visible after sun exposure.</span></span></li></ul></div>
+  </section>
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="trending-up" class="h-5 w-5"></i></span>
+          <h2 class="text-xl font-black tracking-tight text-slate-950">Impact</h2>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <div><p class="text-xs font-black uppercase tracking-wide text-slate-400"><span data-mode-text data-clinical="Short term" data-plain="Soon">Short term</span></p><p class="mt-2 text-sm leading-7 text-slate-600"><span data-mode-text data-clinical="Itching or cosmetic concern; usually not medically dangerous." data-plain="Mostly itching or cosmetic concern.">Itching or cosmetic concern; usually not medically dangerous.</span></p></div>
+          <div><p class="text-xs font-black uppercase tracking-wide text-slate-400"><span data-mode-text data-clinical="Long term" data-plain="Later">Long term</span></p><p class="mt-2 text-sm leading-7 text-slate-600"><span data-mode-text data-clinical="Recurrence is common in warm or humid conditions, but prevention can reduce flares." data-plain="It can come back, especially in warm/humid conditions.">Recurrence is common in warm or humid conditions, but prevention can reduce flares.</span></p></div>
+          <div><p class="text-xs font-black uppercase tracking-wide text-slate-400"><span data-mode-text data-clinical="If ignored" data-plain="If not handled">If ignored</span></p><p class="mt-2 text-sm leading-7 text-slate-600"><span data-mode-text data-clinical="Patches may spread or persist, and pigment changes can remain noticeable even after active yeast clears." data-plain="Patches may spread or stay visible.">Patches may spread or persist, and pigment changes can remain noticeable even after active yeast clears.</span></p></div>
+        </div>
+      </section>
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="list-checks" class="h-5 w-5"></i></span>
+      <h2 class="text-xl font-black tracking-tight text-slate-950">Treatment Plan</h2>
+    </div>
+    <div class="text-sm leading-7 text-slate-650 text-slate-600"><ol class="space-y-3"><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">1</span><span><span data-mode-text data-clinical="Confirm with dermatology if uncertain, often by exam or KOH scraping." data-plain="Confirm with dermatology if uncertain.">Confirm with dermatology if uncertain, often by exam or KOH scraping.</span></span></li><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">2</span><span><span data-mode-text data-clinical="Use topical selenium sulfide or azole shampoo/cream as directed." data-plain="Use topical antifungal treatment as directed.">Use topical selenium sulfide or azole shampoo/cream as directed.</span></span></li><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">3</span><span><span data-mode-text data-clinical="Expect pigment normalization to lag behind yeast clearance." data-plain="Expect color to take longer to normalize than the yeast takes to clear.">Expect pigment normalization to lag behind yeast clearance.</span></span></li><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">4</span><span><span data-mode-text data-clinical="Consider preventive monthly topical use if recurrence is frequent." data-plain="Consider prevention if it keeps coming back.">Consider preventive monthly topical use if recurrence is frequent.</span></span></li><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">5</span><span><span data-mode-text data-clinical="Reserve oral antifungals for extensive or recurrent cases under clinician supervision." data-plain="Use oral medicine only if a clinician recommends it.">Reserve oral antifungals for extensive or recurrent cases under clinician supervision.</span></span></li></ol></div>
+  </section>
+      <div class="rounded-lg border border-rose-200 bg-rose-50 p-5 text-rose-950">
+        <div class="flex items-start gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-rose-500 text-white"><i data-lucide="siren" class="h-5 w-5"></i></span>
+          <div>
+            <h2 class="text-lg font-black">Urgent warning signs</h2>
+            <p class="mt-2 text-sm leading-6"><span data-mode-text data-clinical="Not usually urgent; seek care if rash is painful, rapidly spreading, blistering, infected, or diagnosis is uncertain." data-plain="Usually not urgent; seek care if painful, blistering, infected, or rapidly spreading.">Not usually urgent; seek care if rash is painful, rapidly spreading, blistering, infected, or diagnosis is uncertain.</span></p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+      <p>Educational synthesis from translated medical PDFs. Bring this to treating clinicians for confirmation and personalization.</p>
+      <p class="font-semibold">Not emergency advice. Seek urgent care for severe new symptoms.</p>
+    </div>
+  </footer>
+  <script>
+    function setReadingMode(mode) {
+      document.documentElement.dataset.readingMode = mode;
+      localStorage.setItem('readingMode', mode);
+      document.querySelectorAll('[data-mode-text]').forEach((node) => {
+        node.textContent = mode === 'plain' ? node.dataset.plain : node.dataset.clinical;
+      });
+      document.querySelectorAll('[data-mode-button]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.modeButton === mode));
+      });
+    }
+    document.querySelectorAll('[data-mode-button]').forEach((button) => {
+      button.addEventListener('click', () => setReadingMode(button.dataset.modeButton));
+    });
+    setReadingMode(localStorage.getItem('readingMode') || 'clinical');
+    lucide.createIcons();
+  </script>
+</body>
+</html>

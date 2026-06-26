@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rasha Bakar - Clinical Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] },
+          colors: { ink: '#0f172a', muted: '#64748b', line: '#e2e8f0', stripe: '#635bff', mint: '#00d4aa' },
+          boxShadow: { soft: '0 8px 24px rgba(15, 23, 42, 0.05)', lift: '0 14px 34px rgba(15, 23, 42, 0.08)' }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #fff; }
+    .grid-bg { display: none; }
+    .section-anchor { scroll-margin-top: 104px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .table-wrap table { min-width: 760px; }
+    [data-mode-button][aria-pressed="true"] { background: #0f172a; color: #fff; border-color: #0f172a; }
+    @media (max-width: 760px) { .table-wrap { overflow-x: auto; } }
+  </style>
+</head>
+<body class="font-sans text-ink antialiased">
+  <div class="grid-bg pointer-events-none fixed inset-x-0 top-0 h-[520px]"></div>
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
+  <div class="mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+    <a href="index.html" class="flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-xs font-black text-white">RB</span>
+      <span>
+        <span class="block text-sm font-black text-slate-950">Rasha Bakar</span>
+        <span class="block text-xs font-semibold text-slate-500">Clinical dashboard</span>
+      </span>
+    </a>
+    <nav class="no-scrollbar hidden items-center gap-2 overflow-x-auto md:flex">
+      <a class="rounded-md bg-slate-950 px-4 py-2 text-sm font-bold text-white" href="index.html">Home</a>
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="index.html#start-plan">Start Plan</a>
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="index.html#evidence">Evidence</a>
+    </nav>
+    <div class="hidden items-center rounded-md border border-slate-200 bg-white p-1 sm:flex" aria-label="Reading mode">
+      <button type="button" data-mode-button="clinical" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="true">Clinical</button>
+      <button type="button" data-mode-button="plain" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="false">Plain</button>
+    </div>
+    <a href="index.html#diagnoses" class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-slate-800">
+      Diagnoses
+      <i data-lucide="arrow-right" class="h-4 w-4"></i>
+    </a>
+  </div>
+  <div class="border-t border-slate-200 px-4 py-2 sm:hidden">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-3">
+      <span class="text-xs font-black uppercase tracking-wide text-slate-500">Reading mode</span>
+      <div class="flex items-center rounded-md border border-slate-200 bg-white p-1" aria-label="Reading mode">
+        <button type="button" data-mode-button="clinical" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="true">Clinical</button>
+        <button type="button" data-mode-button="plain" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="false">Plain</button>
+      </div>
+    </div>
+  </div>
+</header>
+  <main class="relative">
+  <section class="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+    <div class="max-w-3xl">
+      <div class="mb-5 inline-flex w-fit items-center gap-2 rounded-md border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-indigo-700">
+        <i data-lucide="sparkles" class="h-4 w-4"></i>
+        Medical report intelligence
+      </div>
+      <h1 class="break-words text-3xl font-black tracking-tight text-slate-950 sm:text-4xl"><span data-mode-text data-clinical="Clinical report summary" data-plain="Plain-language health summary">Clinical report summary</span></h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-slate-600"><span data-mode-text data-clinical="A concise overview of the main findings, follow-up priorities, and treatment sequence to discuss with clinicians." data-plain="A simpler overview of what the reports found, what matters first, and what to ask the doctors next.">A concise overview of the main findings, follow-up priorities, and treatment sequence to discuss with clinicians.</span></p>
+      <div class="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
+        <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"><div class="text-3xl font-black">8</div><p class="mt-1 text-sm font-semibold text-slate-500">diagnosis pages</p></div>
+        <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"><div class="text-3xl font-black">1</div><p class="mt-1 text-sm font-semibold text-slate-500">high priority workup</p></div>
+        <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm"><div class="text-3xl font-black">5</div><p class="mt-1 text-sm font-semibold text-slate-500">first steps</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-slate-200 bg-white">
+    <div class="no-scrollbar mx-auto flex w-full max-w-5xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
+      <a href="diagnoses/sacroiliitis.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+        Sacroiliitis
+      </a>
+<a href="diagnoses/hip-fai.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-sky-500"></span>
+        Hip FAI
+      </a>
+<a href="diagnoses/right-knee.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-cyan-500"></span>
+        Right Knee
+      </a>
+<a href="diagnoses/lumbar-discopathy.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+        Lumbar Spine
+      </a>
+<a href="diagnoses/telogen-effluvium.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+        Telogen Effluvium
+      </a>
+<a href="diagnoses/pityriasis-versicolor.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-lime-500"></span>
+        Pityriasis Versicolor
+      </a>
+<a href="diagnoses/eustachian-rhinitis.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-violet-500"></span>
+        ENT / Rhinitis
+      </a>
+<a href="diagnoses/incidental-findings.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-rose-500"></span>
+        Incidental
+      </a>
+    </div>
+  </section>
+
+  <section id="diagnoses" class="section-anchor border-y border-slate-200 bg-slate-50/60 py-10">
+    <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-5">
+        <p class="text-sm font-black uppercase tracking-wide text-indigo-600">At a glance</p>
+        <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">What matters most</h2>
+        <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="A practical scan of what to confirm, what to treat together, and what can be monitored routinely." data-plain="A quick view of what needs attention first and what can be followed more calmly.">A practical scan of what to confirm, what to treat together, and what can be monitored routinely.</span></p>
+      </div>
+      <div class="rounded-lg border border-slate-200 bg-white shadow-sm"><a href="diagnoses/sacroiliitis.html" class="block border-b border-slate-200 px-4 py-5 last:border-b-0 hover:bg-slate-50">
+        <div class="grid gap-2 md:grid-cols-[160px_1fr]">
+          <div class="flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-amber-500"></span>
+            <p class="text-xs font-black uppercase tracking-wide text-slate-500">Confirm first</p>
+          </div>
+          <div>
+            <p class="font-black text-slate-950">Possible active sacroiliitis</p>
+            <p class="mt-1 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Rheumatology review is the highest-value next step because it may change long-term treatment." data-plain="Start here. A rheumatologist can confirm whether this is an inflammatory joint problem.">Rheumatology review is the highest-value next step because it may change long-term treatment.</span></p>
+          </div>
+        </div>
+      </a>
+<a href="diagnoses/hip-fai.html" class="block border-b border-slate-200 px-4 py-5 last:border-b-0 hover:bg-slate-50">
+        <div class="grid gap-2 md:grid-cols-[160px_1fr]">
+          <div class="flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-sky-500"></span>
+            <p class="text-xs font-black uppercase tracking-wide text-slate-500">Rehab focus</p>
+          </div>
+          <div>
+            <p class="font-black text-slate-950">Hip, knee, SI joint, and lumbar mechanics</p>
+            <p class="mt-1 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="One integrated PT plan is more useful than treating each painful area separately." data-plain="The hip, knee, lower back, and pelvis can affect each other. Physical therapy should look at the whole movement pattern.">One integrated PT plan is more useful than treating each painful area separately.</span></p>
+          </div>
+        </div>
+      </a>
+<a href="diagnoses/telogen-effluvium.html" class="block border-b border-slate-200 px-4 py-5 last:border-b-0 hover:bg-slate-50">
+        <div class="grid gap-2 md:grid-cols-[160px_1fr]">
+          <div class="flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+            <p class="text-xs font-black uppercase tracking-wide text-slate-500">Finish tests</p>
+          </div>
+          <div>
+            <p class="font-black text-slate-950">Derm labs, lymph node follow-up, hearing tests</p>
+            <p class="mt-1 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="These are not the most urgent issues, but they prevent guessing and missed correctable causes." data-plain="These are routine, but still worth finishing so treatable causes are not missed.">These are not the most urgent issues, but they prevent guessing and missed correctable causes.</span></p>
+          </div>
+        </div>
+      </a>
+<a href="diagnoses/eustachian-rhinitis.html" class="block border-b border-slate-200 px-4 py-5 last:border-b-0 hover:bg-slate-50">
+        <div class="grid gap-2 md:grid-cols-[160px_1fr]">
+          <div class="flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-violet-500"></span>
+            <p class="text-xs font-black uppercase tracking-wide text-slate-500">Monitor</p>
+          </div>
+          <div>
+            <p class="font-black text-slate-950">Skin rash, ENT/allergy, incidental pelvic/coccyx findings</p>
+            <p class="mt-1 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Usually routine unless symptoms worsen or new warning signs appear." data-plain="These can usually be followed calmly unless symptoms get worse or new warning signs appear.">Usually routine unless symptoms worsen or new warning signs appear.</span></p>
+          </div>
+        </div>
+      </a></div>
+    </div>
+  </section>
+
+  <section id="start-plan" class="section-anchor mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+      <p class="text-sm font-black uppercase tracking-wide text-indigo-600">Start sequence</p>
+      <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">Suggested order of operations</h2>
+      <div class="mt-6 divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
+        <div class="grid gap-3 p-4 sm:grid-cols-[72px_1fr] sm:items-start">
+    <div class="flex items-center gap-3">
+      <span class="text-xs font-black text-slate-400">01</span>
+      <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50 text-indigo-600"><i data-lucide="stethoscope" class="h-4 w-4"></i></span>
+    </div>
+    <div>
+      <h3 class="text-base font-black text-slate-950">Rheumatology</h3>
+      <p class="mt-1 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Evaluate suspected active/chronic sacroiliitis and inflammatory arthritis pattern." data-plain="See a rheumatologist first to confirm whether the pelvis-spine joint finding is inflammatory.">Evaluate suspected active/chronic sacroiliitis and inflammatory arthritis pattern.</span></p>
+    </div>
+  </div>
+        <div class="grid gap-3 p-4 sm:grid-cols-[72px_1fr] sm:items-start">
+    <div class="flex items-center gap-3">
+      <span class="text-xs font-black text-slate-400">02</span>
+      <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50 text-indigo-600"><i data-lucide="dumbbell" class="h-4 w-4"></i></span>
+    </div>
+    <div>
+      <h3 class="text-base font-black text-slate-950">Integrated PT</h3>
+      <p class="mt-1 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Treat SI, lumbar, hip, and knee mechanics as one movement system." data-plain="Start physical therapy that looks at the back, pelvis, hip, and knee together.">Treat SI, lumbar, hip, and knee mechanics as one movement system.</span></p>
+    </div>
+  </div>
+        <div class="grid gap-3 p-4 sm:grid-cols-[72px_1fr] sm:items-start">
+    <div class="flex items-center gap-3">
+      <span class="text-xs font-black text-slate-400">03</span>
+      <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50 text-indigo-600"><i data-lucide="user-round-check" class="h-4 w-4"></i></span>
+    </div>
+    <div>
+      <h3 class="text-base font-black text-slate-950">Orthopedics</h3>
+      <p class="mt-1 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Follow hip FAI/labrum and knee effusion/Baker cyst if symptoms persist." data-plain="Follow up with orthopedics if hip or knee pain, swelling, locking, or instability continues.">Follow hip FAI/labrum and knee effusion/Baker cyst if symptoms persist.</span></p>
+    </div>
+  </div>
+        <div class="grid gap-3 p-4 sm:grid-cols-[72px_1fr] sm:items-start">
+    <div class="flex items-center gap-3">
+      <span class="text-xs font-black text-slate-400">04</span>
+      <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50 text-indigo-600"><i data-lucide="test-tube-2" class="h-4 w-4"></i></span>
+    </div>
+    <div>
+      <h3 class="text-base font-black text-slate-950">Derm labs</h3>
+      <p class="mt-1 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Complete hair-loss labs and lymph node ultrasound if still planned." data-plain="Finish the hair-loss blood tests and any lymph-node follow-up that was ordered.">Complete hair-loss labs and lymph node ultrasound if still planned.</span></p>
+    </div>
+  </div>
+        <div class="grid gap-3 p-4 sm:grid-cols-[72px_1fr] sm:items-start">
+    <div class="flex items-center gap-3">
+      <span class="text-xs font-black text-slate-400">05</span>
+      <span class="grid h-8 w-8 place-items-center rounded-md bg-slate-50 text-indigo-600"><i data-lucide="audio-lines" class="h-4 w-4"></i></span>
+    </div>
+    <div>
+      <h3 class="text-base font-black text-slate-950">ENT testing</h3>
+      <p class="mt-1 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Finish hearing and Eustachian tube tests; continue allergy treatment as directed." data-plain="Finish the hearing/ear-pressure tests and keep using allergy treatment as prescribed.">Finish hearing and Eustachian tube tests; continue allergy treatment as directed.</span></p>
+    </div>
+  </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="evidence" class="section-anchor border-t border-slate-200 bg-white py-12 text-slate-950">
+    <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-black uppercase tracking-wide text-indigo-600">Report evidence</p>
+      <h2 class="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Key findings from the PDFs.</h2>
+      <div class="table-wrap mt-8 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+        <table class="w-full border-collapse text-left text-sm">
+          <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th class="px-5 py-4">Area</th><th class="px-5 py-4">Report</th><th class="px-5 py-4">Key finding</th></tr></thead>
+          <tbody class="divide-y divide-slate-200 text-slate-700">
+            <tr><td class="px-5 py-4 font-bold text-slate-950">Suspicious Active Sacroiliitis</td><td class="px-5 py-4">7102793657.pdf and hip MRI</td><td class="px-5 py-4">MRI describes chronic bilateral sacroiliac joint changes, worse on the left, plus left-sided T2 signal suspicious for active sacroiliitis.</td></tr>
+<tr><td class="px-5 py-4 font-bold text-slate-950">Right Cam-Type FAI With Labral Irregularity</td><td class="px-5 py-4">7102790650.pdf</td><td class="px-5 py-4">MRI reports cam-type femoroacetabular impingement on the right, right anterosuperior labral irregularity, and bilateral peritrochanteric soft-tissue edema.</td></tr>
+<tr><td class="px-5 py-4 font-bold text-slate-950">Right Knee Effusion, Baker Cyst, Grade 1 ACL/Meniscus Findings</td><td class="px-5 py-4">7102790656.pdf</td><td class="px-5 py-4">MRI shows suprapatellar fat pad edema, synovial thickening, slight effusion, a 5 cm Baker cyst, lateral patellar tilt, grade 1 ACL sprain, and grade 1 medial meniscus degenerative signal.</td></tr>
+<tr><td class="px-5 py-4 font-bold text-slate-950">Lumbar Degenerative Discopathy</td><td class="px-5 py-4">7102790659.pdf</td><td class="px-5 py-4">MRI reports reduced lumbar lordosis, thoracolumbar asymmetry, early disc degeneration, L4-5 bulge with narrowing, and L5-S1 bulge, without significant neural compression.</td></tr>
+<tr><td class="px-5 py-4 font-bold text-slate-950">Telogen Effluvium</td><td class="px-5 py-4">7102750361.pdf</td><td class="px-5 py-4">Dermatology noted temporal hair thinning, scalp itch, stress, sleep disturbance, and ordered labs including CBC, ferritin, B12, folate, vitamin D, thyroid tests, CRP, ESR, and biotin.</td></tr>
+<tr><td class="px-5 py-4 font-bold text-slate-950">Pityriasis Versicolor</td><td class="px-5 py-4">7102750361.pdf</td><td class="px-5 py-4">Dermatology noted red varicolored macules on the inframammary region and back, with preliminary diagnosis of pityriasis versicolor.</td></tr>
+<tr><td class="px-5 py-4 font-bold text-slate-950">Eustachian Tube Obstruction With Seasonal Allergic Rhinitis</td><td class="px-5 py-4">7109790416.pdf and RASHA BAKAR.pdf</td><td class="px-5 py-4">ENT noted long-standing left ear clicking and hearing complaints, congested turbinates with mucoid discharge, normal otoscopy, and ordered audiometry plus Eustachian tube testing. Rinoclenil nasal spray was prescribed.</td></tr>
+<tr><td class="px-5 py-4 font-bold text-slate-950">Incidental Sacral, Coccyx, and Pelvic Findings</td><td class="px-5 py-4">7102793657.pdf</td><td class="px-5 py-4">MRI noted anterior angulation/distortion of the distal coccyx, a small 3 mm osseous fragment suggesting old sequelae, a small S2 Tarlov cyst, retroverted uterus, and a 2 cm left ovarian follicular cyst.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+      <p>Educational synthesis from translated medical PDFs. Bring this to treating clinicians for confirmation and personalization.</p>
+      <p class="font-semibold">Not emergency advice. Seek urgent care for severe new symptoms.</p>
+    </div>
+  </footer>
+  <script>
+    function setReadingMode(mode) {
+      document.documentElement.dataset.readingMode = mode;
+      localStorage.setItem('readingMode', mode);
+      document.querySelectorAll('[data-mode-text]').forEach((node) => {
+        node.textContent = mode === 'plain' ? node.dataset.plain : node.dataset.clinical;
+      });
+      document.querySelectorAll('[data-mode-button]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.modeButton === mode));
+      });
+    }
+    document.querySelectorAll('[data-mode-button]').forEach((button) => {
+      button.addEventListener('click', () => setReadingMode(button.dataset.modeButton));
+    });
+    setReadingMode(localStorage.getItem('readingMode') || 'clinical');
+    lucide.createIcons();
+  </script>
+</body>
+</html>

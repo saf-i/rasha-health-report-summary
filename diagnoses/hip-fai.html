@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Right Cam-Type FAI With Labral Irregularity - Rasha Bakar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] },
+          colors: { ink: '#0f172a', muted: '#64748b', line: '#e2e8f0', stripe: '#635bff', mint: '#00d4aa' },
+          boxShadow: { soft: '0 8px 24px rgba(15, 23, 42, 0.05)', lift: '0 14px 34px rgba(15, 23, 42, 0.08)' }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #fff; }
+    .grid-bg { display: none; }
+    .section-anchor { scroll-margin-top: 104px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .table-wrap table { min-width: 760px; }
+    [data-mode-button][aria-pressed="true"] { background: #0f172a; color: #fff; border-color: #0f172a; }
+    @media (max-width: 760px) { .table-wrap { overflow-x: auto; } }
+  </style>
+</head>
+<body class="font-sans text-ink antialiased">
+  <div class="grid-bg pointer-events-none fixed inset-x-0 top-0 h-[520px]"></div>
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
+  <div class="mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+    <a href="../index.html" class="flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-xs font-black text-white">RB</span>
+      <span>
+        <span class="block text-sm font-black text-slate-950">Rasha Bakar</span>
+        <span class="block text-xs font-semibold text-slate-500">Clinical dashboard</span>
+      </span>
+    </a>
+    <nav class="no-scrollbar hidden items-center gap-2 overflow-x-auto md:flex">
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="../index.html">Home</a>
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="../index.html#start-plan">Start Plan</a>
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="../index.html#evidence">Evidence</a>
+    </nav>
+    <div class="hidden items-center rounded-md border border-slate-200 bg-white p-1 sm:flex" aria-label="Reading mode">
+      <button type="button" data-mode-button="clinical" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="true">Clinical</button>
+      <button type="button" data-mode-button="plain" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="false">Plain</button>
+    </div>
+    <a href="../index.html#diagnoses" class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-slate-800">
+      Diagnoses
+      <i data-lucide="arrow-right" class="h-4 w-4"></i>
+    </a>
+  </div>
+  <div class="border-t border-slate-200 px-4 py-2 sm:hidden">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-3">
+      <span class="text-xs font-black uppercase tracking-wide text-slate-500">Reading mode</span>
+      <div class="flex items-center rounded-md border border-slate-200 bg-white p-1" aria-label="Reading mode">
+        <button type="button" data-mode-button="clinical" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="true">Clinical</button>
+        <button type="button" data-mode-button="plain" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="false">Plain</button>
+      </div>
+    </div>
+  </div>
+</header>
+  <main class="relative">
+  <section class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <a href="../index.html#diagnoses" class="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-black text-slate-700 shadow-sm transition hover:bg-slate-50">
+      <i data-lucide="arrow-left" class="h-4 w-4"></i>
+      Back to all diagnoses
+    </a>
+    <div class="mt-8 border-b border-slate-200 pb-8">
+      <div class="mb-5 flex flex-wrap items-center gap-3">
+        <span class="grid h-10 w-10 place-items-center rounded-md bg-sky-500 text-white"><i data-lucide="bone" class="h-5 w-5"></i></span>
+        <span class="rounded-md bg-sky-100 text-sky-800 px-3 py-1 text-xs font-black">Moderate priority</span>
+        <span class="rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-black text-slate-600">Severity 6/10</span>
+        <span class="rounded-md border border-slate-200 bg-white px-3 py-1 text-xs font-black text-slate-600">Orthopedics</span>
+      </div>
+      <h1 class="max-w-3xl break-words text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Right Cam-Type FAI With Labral Irregularity</h1>
+      <p class="mt-4 max-w-3xl text-base leading-7 text-slate-600"><span data-mode-text data-clinical="Hip impingement pattern with labral signal change" data-plain="Hip pinching pattern with possible irritation of the socket rim">Hip impingement pattern with labral signal change</span></p>
+    </div>
+  </section>
+
+  <section class="sticky top-[73px] z-30 border-b border-slate-200 bg-white/95 backdrop-blur">
+    <div class="no-scrollbar mx-auto flex w-full max-w-5xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
+      <a href="sacroiliitis.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+        Sacroiliitis
+      </a>
+<a href="hip-fai.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition bg-sky-100 text-sky-800 border-transparent">
+        <span class="h-2 w-2 rounded-full bg-sky-500"></span>
+        Hip FAI
+      </a>
+<a href="right-knee.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-cyan-500"></span>
+        Right Knee
+      </a>
+<a href="lumbar-discopathy.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+        Lumbar Spine
+      </a>
+<a href="telogen-effluvium.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+        Telogen Effluvium
+      </a>
+<a href="pityriasis-versicolor.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-lime-500"></span>
+        Pityriasis Versicolor
+      </a>
+<a href="eustachian-rhinitis.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-violet-500"></span>
+        ENT / Rhinitis
+      </a>
+<a href="incidental-findings.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition border-slate-200 bg-white text-slate-600 hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-rose-500"></span>
+        Incidental
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <article class="grid gap-4">
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="file-text" class="h-5 w-5"></i></span>
+      <h2 class="text-xl font-black tracking-tight text-slate-950">Overview</h2>
+    </div>
+    <div class="text-sm leading-7 text-slate-650 text-slate-600"><p><span data-mode-text data-clinical="Cam-type femoroacetabular impingement means the femoral head-neck shape can pinch against the hip socket during flexion and rotation. The labrum is the cartilage rim around the socket; irregularity can reflect irritation or a tear." data-plain="The shape of the right hip may cause pinching when the hip bends or rotates. This can irritate the soft rim of cartilage around the hip socket.">Cam-type femoroacetabular impingement means the femoral head-neck shape can pinch against the hip socket during flexion and rotation. The labrum is the cartilage rim around the socket; irregularity can reflect irritation or a tear.</span></p><p class="mt-4"><span class="font-bold text-slate-950"><span data-mode-text data-clinical="Possible causes:" data-plain="What could cause it:">Possible causes:</span></span> <span data-mode-text data-clinical="Developmental hip bone shape; Repetitive deep hip flexion, pivoting, or athletic loading; Movement patterns that repeatedly place the hip into pinch positions; Secondary tendon or bursa irritation around the greater trochanter" data-plain="Hip bone shape that developed over time; Repeated deep bending, pivoting, or athletic loading; Movements that repeatedly put the hip into a pinch position; Irritation of nearby tendons or bursa">Developmental hip bone shape; Repetitive deep hip flexion, pivoting, or athletic loading; Movement patterns that repeatedly place the hip into pinch positions; Secondary tendon or bursa irritation around the greater trochanter</span>.</p><p class="mt-4"><span class="font-bold text-slate-950"><span data-mode-text data-clinical="Report source:" data-plain="Where this came from:">Report source:</span></span> 7102790650.pdf.</p></div>
+  </section>
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="clipboard-list" class="h-5 w-5"></i></span>
+      <h2 class="text-xl font-black tracking-tight text-slate-950">Key Findings</h2>
+    </div>
+    <div class="text-sm leading-7 text-slate-650 text-slate-600"><ul class="space-y-2"><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Loss of offset at the femoral head-neck junction consistent with cam-type FAI." data-plain="The right hip has a shape linked with pinching during movement.">Loss of offset at the femoral head-neck junction consistent with cam-type FAI.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="T2 hyperintensity and contour irregularity in the right anterosuperior labrum." data-plain="The front-upper cartilage rim of the socket looks irritated or irregular.">T2 hyperintensity and contour irregularity in the right anterosuperior labrum.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Bilateral peritrochanteric soft-tissue edema." data-plain="Soft tissues around both outer hips show mild swelling/irritation.">Bilateral peritrochanteric soft-tissue edema.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Hip joint spaces and articular surfaces were reported as normal." data-plain="The main hip joint spaces were reported as normal.">Hip joint spaces and articular surfaces were reported as normal.</span></span></li></ul></div>
+  </section>
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="heart-pulse" class="h-5 w-5"></i></span>
+      <h2 class="text-xl font-black tracking-tight text-slate-950">Symptoms</h2>
+    </div>
+    <div class="text-sm leading-7 text-slate-650 text-slate-600"><ul class="space-y-2"><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Groin or front-of-hip pain." data-plain="Front hip or groin pain.">Groin or front-of-hip pain.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Pain with sitting, squatting, stairs, pivoting, or internal rotation." data-plain="Pain with sitting, squatting, stairs, or twisting.">Pain with sitting, squatting, stairs, pivoting, or internal rotation.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Clicking, catching, stiffness, or reduced rotation." data-plain="Clicking, catching, stiffness, or limited rotation.">Clicking, catching, stiffness, or reduced rotation.</span></span></li><li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span><span data-mode-text data-clinical="Outer hip tenderness if peritrochanteric tissues are irritated." data-plain="Outer hip soreness if nearby tendons/bursa are irritated.">Outer hip tenderness if peritrochanteric tissues are irritated.</span></span></li></ul></div>
+  </section>
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <div class="mb-4 flex items-center gap-3">
+          <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="trending-up" class="h-5 w-5"></i></span>
+          <h2 class="text-xl font-black tracking-tight text-slate-950">Impact</h2>
+        </div>
+        <div class="grid gap-4 md:grid-cols-3">
+          <div><p class="text-xs font-black uppercase tracking-wide text-slate-400"><span data-mode-text data-clinical="Short term" data-plain="Soon">Short term</span></p><p class="mt-2 text-sm leading-7 text-slate-600"><span data-mode-text data-clinical="Hip pain may alter walking mechanics and increase stress on the lower back, SI joints, and knees." data-plain="Can change how you walk and make the back, SI joints, or knees work harder.">Hip pain may alter walking mechanics and increase stress on the lower back, SI joints, and knees.</span></p></div>
+          <div><p class="text-xs font-black uppercase tracking-wide text-slate-400"><span data-mode-text data-clinical="Long term" data-plain="Later">Long term</span></p><p class="mt-2 text-sm leading-7 text-slate-600"><span data-mode-text data-clinical="Persistent impingement can keep irritating the labrum and cartilage, contributing to chronic hip pain and possible earlier degenerative change." data-plain="If the pinching continues, hip pain may become more persistent.">Persistent impingement can keep irritating the labrum and cartilage, contributing to chronic hip pain and possible earlier degenerative change.</span></p></div>
+          <div><p class="text-xs font-black uppercase tracking-wide text-slate-400"><span data-mode-text data-clinical="If ignored" data-plain="If not handled">If ignored</span></p><p class="mt-2 text-sm leading-7 text-slate-600"><span data-mode-text data-clinical="Ongoing pain, activity limitation, worsening labral symptoms, and compensatory overload of the knee/back." data-plain="Pain and limited activity can continue, and other areas may compensate.">Ongoing pain, activity limitation, worsening labral symptoms, and compensatory overload of the knee/back.</span></p></div>
+        </div>
+      </section>
+      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="list-checks" class="h-5 w-5"></i></span>
+      <h2 class="text-xl font-black tracking-tight text-slate-950">Treatment Plan</h2>
+    </div>
+    <div class="text-sm leading-7 text-slate-650 text-slate-600"><ol class="space-y-3"><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">1</span><span><span data-mode-text data-clinical="Start FAI-aware physical therapy focused on hip control, glute strength, and avoiding pinch positions." data-plain="Start physical therapy that understands hip impingement.">Start FAI-aware physical therapy focused on hip control, glute strength, and avoiding pinch positions.</span></span></li><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">2</span><span><span data-mode-text data-clinical="Temporarily reduce deep squats, prolonged sitting, hill running, and pivoting if they reproduce pain." data-plain="Temporarily avoid movements that pinch the hip.">Temporarily reduce deep squats, prolonged sitting, hill running, and pivoting if they reproduce pain.</span></span></li><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">3</span><span><span data-mode-text data-clinical="Review pain-control options with orthopedics or primary care." data-plain="Review pain-control options with a clinician.">Review pain-control options with orthopedics or primary care.</span></span></li><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">4</span><span><span data-mode-text data-clinical="Consider diagnostic or therapeutic injection if the pain source remains unclear." data-plain="Consider an injection only if the pain source is unclear.">Consider diagnostic or therapeutic injection if the pain source remains unclear.</span></span></li><li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">5</span><span><span data-mode-text data-clinical="If 8-12 weeks of PT fails, discuss hip arthroscopy/labral options with an orthopedic hip specialist." data-plain="If PT does not help after 8-12 weeks, see a hip specialist.">If 8-12 weeks of PT fails, discuss hip arthroscopy/labral options with an orthopedic hip specialist.</span></span></li></ol></div>
+  </section>
+      <div class="rounded-lg border border-rose-200 bg-rose-50 p-5 text-rose-950">
+        <div class="flex items-start gap-3">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-rose-500 text-white"><i data-lucide="siren" class="h-5 w-5"></i></span>
+          <div>
+            <h2 class="text-lg font-black">Urgent warning signs</h2>
+            <p class="mt-2 text-sm leading-6"><span data-mode-text data-clinical="Seek care quickly for inability to bear weight, fever, severe trauma, or rapidly worsening hip pain." data-plain="Get care quickly if you cannot bear weight, have fever, had a major injury, or pain rapidly worsens.">Seek care quickly for inability to bear weight, fever, severe trauma, or rapidly worsening hip pain.</span></p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+      <p>Educational synthesis from translated medical PDFs. Bring this to treating clinicians for confirmation and personalization.</p>
+      <p class="font-semibold">Not emergency advice. Seek urgent care for severe new symptoms.</p>
+    </div>
+  </footer>
+  <script>
+    function setReadingMode(mode) {
+      document.documentElement.dataset.readingMode = mode;
+      localStorage.setItem('readingMode', mode);
+      document.querySelectorAll('[data-mode-text]').forEach((node) => {
+        node.textContent = mode === 'plain' ? node.dataset.plain : node.dataset.clinical;
+      });
+      document.querySelectorAll('[data-mode-button]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.modeButton === mode));
+      });
+    }
+    document.querySelectorAll('[data-mode-button]').forEach((button) => {
+      button.addEventListener('click', () => setReadingMode(button.dataset.modeButton));
+    });
+    setReadingMode(localStorage.getItem('readingMode') || 'clinical');
+    lucide.createIcons();
+  </script>
+</body>
+</html>
