@@ -1002,7 +1002,9 @@ function homePage() {
       detail: "Rheumatology review is the highest-value next step because it may change long-term treatment.",
       plainDetail: "Start here. A rheumatologist can confirm whether this is an inflammatory joint problem.",
       color: "amber",
-      href: "diagnoses/sacroiliitis.html"
+      href: "diagnoses/sacroiliitis.html",
+      icon: "flame",
+      action: "Highest priority"
     },
     {
       label: "Rehab focus",
@@ -1010,7 +1012,9 @@ function homePage() {
       detail: "One integrated PT plan is more useful than treating each painful area separately.",
       plainDetail: "The hip, knee, lower back, and pelvis can affect each other. Physical therapy should look at the whole movement pattern.",
       color: "sky",
-      href: "diagnoses/hip-fai.html"
+      href: "diagnoses/hip-fai.html",
+      icon: "activity",
+      action: "Treat together"
     },
     {
       label: "Finish tests",
@@ -1018,7 +1022,9 @@ function homePage() {
       detail: "These are not the most urgent issues, but they prevent guessing and missed correctable causes.",
       plainDetail: "These are routine, but still worth finishing so treatable causes are not missed.",
       color: "emerald",
-      href: "diagnoses/telogen-effluvium.html"
+      href: "diagnoses/telogen-effluvium.html",
+      icon: "test-tube-2",
+      action: "Close gaps"
     },
     {
       label: "Monitor",
@@ -1026,20 +1032,26 @@ function homePage() {
       detail: "Usually routine unless symptoms worsen or new warning signs appear.",
       plainDetail: "These can usually be followed calmly unless symptoms get worse or new warning signs appear.",
       color: "violet",
-      href: "diagnoses/eustachian-rhinitis.html"
+      href: "diagnoses/eustachian-rhinitis.html",
+      icon: "radar",
+      action: "Routine watch"
     }
   ]
     .map((row) => {
       const c = colorMap[row.color];
-      return `<a href="${row.href}" class="block border-b border-slate-200 px-4 py-5 last:border-b-0 hover:bg-slate-50">
-        <div class="grid gap-2 md:grid-cols-[160px_1fr]">
-          <div class="flex items-center gap-2">
-            <span class="h-2.5 w-2.5 rounded-full ${c.solid}"></span>
-            <p class="text-xs font-black uppercase tracking-wide text-slate-500">${escapeHtml(row.label)}</p>
+      return `<a href="${row.href}" class="group block border-b border-slate-200 bg-white px-4 py-5 transition last:border-b-0 hover:bg-slate-50">
+        <div class="grid gap-4 md:grid-cols-[190px_1fr]">
+          <div class="flex items-start gap-3">
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-md ${c.solid} text-white shadow-sm"><i data-lucide="${row.icon}" class="h-5 w-5"></i></span>
+            <div>
+              <p class="text-xs font-black uppercase tracking-wide text-slate-500">${escapeHtml(row.label)}</p>
+              <p class="mt-2 inline-flex rounded-md ${c.badge} px-2 py-1 text-xs font-black">${escapeHtml(row.action)}</p>
+            </div>
           </div>
           <div>
-            <p class="font-black text-slate-950">${escapeHtml(row.value)}</p>
+            <p class="text-lg font-black leading-tight text-slate-950">${escapeHtml(row.value)}</p>
             <p class="mt-1 text-sm leading-6 text-slate-600">${modeText(row.detail, row.plainDetail)}</p>
+            <p class="mt-3 inline-flex items-center gap-1 text-xs font-black text-indigo-600">Open details <i data-lucide="arrow-right" class="h-3.5 w-3.5 transition group-hover:translate-x-0.5"></i></p>
           </div>
         </div>
       </a>`;
@@ -1107,18 +1119,18 @@ function homePage() {
     return groups;
   }, {});
   const categoryCards = Object.entries(categoryMap)
-    .map(([category, items]) => `<div class="rounded-lg border border-slate-200 bg-white shadow-sm">
-      <div class="border-b border-slate-200 px-4 py-3">
-        <p class="text-xs font-black uppercase tracking-wide text-indigo-600">${escapeHtml(category)}</p>
+    .map(([category, items]) => `<div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-200 bg-slate-50 px-4 py-3">
+        <p class="text-xs font-black uppercase tracking-wide text-slate-500">${escapeHtml(category)}</p>
       </div>
       <div class="divide-y divide-slate-200">
         ${items.map((d) => {
           const c = colorMap[d.color];
           const note = diagnosisLearning[d.id];
-          return `<a href="diagnoses/${d.id}.html" class="block p-4 hover:bg-slate-50">
+          return `<a href="diagnoses/${d.id}.html" class="block border-l-4 border-l-transparent p-4 transition hover:bg-slate-50">
             <div class="flex flex-wrap items-start justify-between gap-3">
               <div class="flex min-w-0 gap-3">
-                <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${c.solid}"></span>
+                <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-md ${c.solid} text-white"><i data-lucide="${d.icon}" class="h-4 w-4"></i></span>
                 <div class="min-w-0">
                   <h3 class="break-words text-base font-black text-slate-950">${escapeHtml(d.title)}</h3>
                   <p class="mt-1 text-xs font-bold uppercase tracking-wide text-slate-400">${escapeHtml(d.report)}</p>
@@ -1129,11 +1141,11 @@ function homePage() {
             <div class="mt-4 grid gap-3 md:grid-cols-2">
               <div>
                 <p class="text-xs font-black uppercase tracking-wide text-slate-400">${modeText("What it does", "Body part / system")}</p>
-                <p class="mt-1 text-sm leading-6 text-slate-600">${modeText(note.role, note.plainRole)}</p>
+                <p class="mt-1 text-sm leading-6 text-slate-700">${modeText(note.role, note.plainRole)}</p>
               </div>
               <div>
                 <p class="text-xs font-black uppercase tracking-wide text-slate-400">${modeText("What the diagnosis means", "What it means")}</p>
-                <p class="mt-1 text-sm leading-6 text-slate-600">${modeText(note.meaning, note.plainMeaning)}</p>
+                <p class="mt-1 text-sm leading-6 text-slate-700">${modeText(note.meaning, note.plainMeaning)}</p>
               </div>
             </div>
           </a>`;
@@ -1422,21 +1434,27 @@ function diagnosisPage(d) {
 
   <section class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
     <article class="grid gap-4">
-      ${section("Overview", "file-text", `<p>${modeText(d.description, p.description)}</p><p class="mt-4"><span class="font-bold text-slate-950">${modeText("Possible causes:", "What could cause it:")}</span> ${modeText(joinClean(d.causes), joinClean(p.causes))}.</p><p class="mt-4"><span class="font-bold text-slate-950">${modeText("Report source:", "Where this came from:")}</span> ${escapeHtml(d.report)}.</p>`)}
-      ${section("Key Findings", "clipboard-list", list(pairedList(d.findings, p.findings)))}
-      ${section("Symptoms", "heart-pulse", list(pairedList(d.symptoms, p.symptoms)))}
-      <section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+      ${section("Overview", "file-text", `<p>${modeText(d.description, p.description)}</p><p class="mt-4"><span class="font-bold text-slate-950">${modeText("Possible causes:", "What could cause it:")}</span> ${modeText(joinClean(d.causes), joinClean(p.causes))}.</p><p class="mt-4"><span class="font-bold text-slate-950">${modeText("Report source:", "Where this came from:")}</span> ${escapeHtml(d.report)}.</p>`, "indigo", "Context")}
+      ${section("Key Findings", "clipboard-list", list(pairedList(d.findings, p.findings), "sky"), "sky", "Evidence")}
+      ${section("Symptoms", "heart-pulse", list(pairedList(d.symptoms, p.symptoms), "rose"), "rose", "What you may feel")}
+      <section class="section-anchor overflow-hidden rounded-lg border border-amber-200 bg-white shadow-sm">
+        <div class="h-1.5 bg-amber-500"></div>
+        <div class="p-5">
         <div class="mb-4 flex items-center gap-3">
-          <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="trending-up" class="h-5 w-5"></i></span>
-          <h2 class="text-xl font-black tracking-tight text-slate-950">Impact</h2>
+          <span class="grid h-9 w-9 place-items-center rounded-md bg-amber-500 text-white shadow-sm"><i data-lucide="trending-up" class="h-5 w-5"></i></span>
+          <div>
+            <p class="text-xs font-black uppercase tracking-wide text-amber-700">Risk horizon</p>
+            <h2 class="text-xl font-black tracking-tight text-slate-950">Impact</h2>
+          </div>
         </div>
         <div class="grid gap-4 md:grid-cols-3">
-          <div><p class="text-xs font-black uppercase tracking-wide text-slate-400">${modeText("Short term", "Soon")}</p><p class="mt-2 text-sm leading-7 text-slate-600">${modeText(d.shortImpact, p.shortImpact)}</p></div>
-          <div><p class="text-xs font-black uppercase tracking-wide text-slate-400">${modeText("Long term", "Later")}</p><p class="mt-2 text-sm leading-7 text-slate-600">${modeText(d.longImpact, p.longImpact)}</p></div>
-          <div><p class="text-xs font-black uppercase tracking-wide text-slate-400">${modeText("If ignored", "If not handled")}</p><p class="mt-2 text-sm leading-7 text-slate-600">${modeText(d.untreated, p.untreated)}</p></div>
+          <div class="rounded-md border border-amber-100 bg-amber-50 p-4"><p class="text-xs font-black uppercase tracking-wide text-amber-700">${modeText("Short term", "Soon")}</p><p class="mt-2 text-sm leading-7 text-slate-700">${modeText(d.shortImpact, p.shortImpact)}</p></div>
+          <div class="rounded-md border border-slate-200 bg-slate-50 p-4"><p class="text-xs font-black uppercase tracking-wide text-slate-500">${modeText("Long term", "Later")}</p><p class="mt-2 text-sm leading-7 text-slate-700">${modeText(d.longImpact, p.longImpact)}</p></div>
+          <div class="rounded-md border border-rose-100 bg-rose-50 p-4"><p class="text-xs font-black uppercase tracking-wide text-rose-700">${modeText("If ignored", "If not handled")}</p><p class="mt-2 text-sm leading-7 text-slate-700">${modeText(d.untreated, p.untreated)}</p></div>
+        </div>
         </div>
       </section>
-      ${section("Treatment Plan", "list-checks", ordered(pairedList(d.plan, p.plan)))}
+      ${section("Treatment Plan", "list-checks", ordered(pairedList(d.plan, p.plan), "emerald"), "emerald", "Next steps")}
       <div class="rounded-lg border border-rose-200 bg-rose-50 p-5 text-rose-950">
         <div class="flex items-start gap-3">
           <span class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-rose-500 text-white"><i data-lucide="siren" class="h-5 w-5"></i></span>
@@ -1459,14 +1477,33 @@ function metric(label, value, icon) {
   </div>`;
 }
 
-function section(title, icon, content) {
-  return `<section class="section-anchor rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+function section(title, icon, content, tone = "slate", kicker = "") {
+  const styles = sectionTone(tone);
+  return `<section class="section-anchor overflow-hidden rounded-lg border ${styles.border} bg-white shadow-sm">
+    <div class="h-1.5 ${styles.bar}"></div>
+    <div class="p-5">
     <div class="mb-4 flex items-center gap-3">
-      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-white"><i data-lucide="${icon}" class="h-5 w-5"></i></span>
-      <h2 class="text-xl font-black tracking-tight text-slate-950">${escapeHtml(title)}</h2>
+      <span class="grid h-9 w-9 place-items-center rounded-md ${styles.icon} text-white shadow-sm"><i data-lucide="${icon}" class="h-5 w-5"></i></span>
+      <div>
+        ${kicker ? `<p class="text-xs font-black uppercase tracking-wide ${styles.kicker}">${escapeHtml(kicker)}</p>` : ""}
+        <h2 class="text-xl font-black tracking-tight text-slate-950">${escapeHtml(title)}</h2>
+      </div>
     </div>
-    <div class="text-sm leading-7 text-slate-650 text-slate-600">${content}</div>
+    <div class="rounded-md ${styles.body} p-4 text-sm leading-7 text-slate-700">${content}</div>
+    </div>
   </section>`;
+}
+
+function sectionTone(tone) {
+  const styles = {
+    indigo: { border: "border-indigo-200", bar: "bg-indigo-600", icon: "bg-indigo-600", kicker: "text-indigo-700", body: "bg-indigo-50/60 border border-indigo-100" },
+    sky: { border: "border-sky-200", bar: "bg-sky-500", icon: "bg-sky-500", kicker: "text-sky-700", body: "bg-sky-50/60 border border-sky-100" },
+    rose: { border: "border-rose-200", bar: "bg-rose-500", icon: "bg-rose-500", kicker: "text-rose-700", body: "bg-rose-50/60 border border-rose-100" },
+    amber: { border: "border-amber-200", bar: "bg-amber-500", icon: "bg-amber-500", kicker: "text-amber-700", body: "bg-amber-50/60 border border-amber-100" },
+    emerald: { border: "border-emerald-200", bar: "bg-emerald-500", icon: "bg-emerald-500", kicker: "text-emerald-700", body: "bg-emerald-50/60 border border-emerald-100" },
+    slate: { border: "border-slate-200", bar: "bg-slate-950", icon: "bg-slate-950", kicker: "text-slate-500", body: "bg-slate-50 border border-slate-200" }
+  };
+  return styles[tone] ?? styles.slate;
 }
 
 function miniPanel(title, icon, text) {
@@ -1492,12 +1529,28 @@ function step(n, icon, title, text, plainText = text) {
   </div>`;
 }
 
-function list(items) {
-  return `<ul class="space-y-2">${items.map((item) => `<li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span><span>${modeText(item.clinical ?? item, item.plain ?? item)}</span></li>`).join("")}</ul>`;
+function list(items, tone = "indigo") {
+  const dot = {
+    indigo: "bg-indigo-500",
+    sky: "bg-sky-500",
+    rose: "bg-rose-500",
+    amber: "bg-amber-500",
+    emerald: "bg-emerald-500",
+    slate: "bg-slate-950"
+  }[tone] ?? "bg-indigo-500";
+  return `<ul class="space-y-2">${items.map((item) => `<li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${dot}"></span><span>${modeText(item.clinical ?? item, item.plain ?? item)}</span></li>`).join("")}</ul>`;
 }
 
-function ordered(items) {
-  return `<ol class="space-y-3">${items.map((item, index) => `<li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-indigo-600 text-xs font-black text-white">${index + 1}</span><span>${modeText(item.clinical ?? item, item.plain ?? item)}</span></li>`).join("")}</ol>`;
+function ordered(items, tone = "indigo") {
+  const bg = {
+    indigo: "bg-indigo-600",
+    sky: "bg-sky-500",
+    rose: "bg-rose-500",
+    amber: "bg-amber-500",
+    emerald: "bg-emerald-500",
+    slate: "bg-slate-950"
+  }[tone] ?? "bg-indigo-600";
+  return `<ol class="space-y-3">${items.map((item, index) => `<li class="flex gap-3"><span class="grid h-7 w-7 shrink-0 place-items-center rounded-md ${bg} text-xs font-black text-white">${index + 1}</span><span>${modeText(item.clinical ?? item, item.plain ?? item)}</span></li>`).join("")}</ol>`;
 }
 
 function escapeHtml(value) {
