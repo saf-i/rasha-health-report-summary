@@ -735,6 +735,89 @@ const plainCopy = {
   }
 };
 
+const documentedTests = [
+  {
+    group: "Inflammation / general labs",
+    status: "Ordered in dermatology report",
+    items: ["CBC", "CRP", "ESR"],
+    why: "Screens for anemia, infection signals, and inflammation that could support or weaken the inflammatory-joint hypothesis.",
+    plainWhy: "Helps show whether there are signs of inflammation, infection, or blood-count problems."
+  },
+  {
+    group: "Hair-loss / nutrition labs",
+    status: "Ordered in dermatology report",
+    items: ["Ferritin", "Vitamin B12", "Folic acid", "Vitamin D 25-OH", "Biotin"],
+    why: "Checks common correctable contributors to diffuse hair shedding and fatigue-like symptoms.",
+    plainWhy: "Looks for low iron or vitamin problems that can make hair shedding worse."
+  },
+  {
+    group: "Thyroid labs",
+    status: "Ordered in dermatology report",
+    items: ["TSH", "Free T4"],
+    why: "Thyroid disease can contribute to hair shedding, skin changes, fatigue, cycle changes, and temperature sensitivity.",
+    plainWhy: "Checks whether the thyroid is part of the hair or body-wide symptoms."
+  },
+  {
+    group: "Imaging already completed",
+    status: "Completed in reports",
+    items: ["Sacrum/SI MRI", "Hip MRI", "Right knee MRI", "Lumbar spine MRI", "Pelvis/right hip X-rays"],
+    why: "These studies are the main evidence behind the sacroiliitis, hip, knee, and lumbar diagnoses.",
+    plainWhy: "These scans are the main reason the dashboard focuses on the pelvis, hip, knee, and back."
+  },
+  {
+    group: "ENT testing",
+    status: "Ordered by ENT",
+    items: ["Pure tone audiometry", "Eustachian tube function testing"],
+    why: "Clarifies whether ear clicking/fullness is linked to measurable hearing or pressure-function changes.",
+    plainWhy: "Checks whether the ear symptoms are affecting hearing or pressure balance."
+  },
+  {
+    group: "Lymph-node follow-up",
+    status: "Ordered / planned if still needed",
+    items: ["Superficial tissue ultrasound for occipital/postauricular lymph nodes"],
+    why: "Helps characterize enlarged scalp/behind-ear lymph nodes if they persist.",
+    plainWhy: "Looks closer at the swollen nodes behind the scalp/ear if they are still present."
+  }
+];
+
+const missingTests = [
+  {
+    group: "Rheumatology autoimmune workup",
+    priority: "Highest yield",
+    items: ["HLA-B27", "ANA", "Rheumatoid factor (RF)", "Anti-CCP", "Repeat/confirm CRP and ESR if no results are available"],
+    why: "Helps evaluate axial spondyloarthritis, ankylosing spondylitis, psoriatic arthritis, rheumatoid-pattern disease, or another inflammatory arthritis.",
+    plainWhy: "Helps the rheumatologist decide whether the joint findings are from an inflammatory or autoimmune condition."
+  },
+  {
+    group: "Baseline safety / organ function",
+    priority: "Useful before treatment decisions",
+    items: ["CMP", "Kidney function", "Liver enzymes", "Urinalysis if clinician thinks it fits"],
+    why: "Provides baseline organ data before medications and helps screen for broader systemic involvement.",
+    plainWhy: "Gives doctors a safe baseline before choosing medicines and checks kidney/liver health."
+  },
+  {
+    group: "Iron detail",
+    priority: "Useful if ferritin is low or unclear",
+    items: ["Serum iron", "TIBC", "Transferrin saturation"],
+    why: "Ferritin can be affected by inflammation, so a fuller iron panel may clarify true iron availability.",
+    plainWhy: "Gives a clearer answer about iron if ferritin alone is confusing."
+  },
+  {
+    group: "Hormone / androgen workup",
+    priority: "Discuss if chin hair growth, acne, irregular cycles, or PCOS concern exists",
+    items: ["Total/free testosterone", "DHEA-S", "LH/FSH", "Prolactin", "A1c or fasting insulin if PCOS/metabolic risk is suspected"],
+    why: "Helps determine whether androgen excess or PCOS-like physiology is contributing to hair or skin findings.",
+    plainWhy: "Helps check whether hormone imbalance is part of the hair shedding or chin-hair growth."
+  },
+  {
+    group: "Infection screening before advanced rheumatology meds",
+    priority: "Only if treatment path requires it",
+    items: ["TB screening", "Hepatitis B/C", "Other tests chosen by rheumatology"],
+    why: "Often required before immunosuppressive therapy, but not usually the first test unless that treatment is being considered.",
+    plainWhy: "These may be needed later if stronger immune medicines are considered."
+  }
+];
+
 function baseHead(title) {
   return `<!doctype html>
 <html lang="en">
@@ -771,6 +854,7 @@ function baseHead(title) {
 
 function header(active = "home", depth = ".") {
   const homeHref = depth === "." ? "index.html" : "../index.html";
+  const labsHref = depth === "." ? "labs.html" : "../labs.html";
   return `<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
   <div class="mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
     <a href="${homeHref}" class="flex items-center gap-3">
@@ -782,6 +866,7 @@ function header(active = "home", depth = ".") {
     </a>
     <nav class="no-scrollbar hidden items-center gap-2 overflow-x-auto md:flex">
       <a class="${navClass(active === "home")}" href="${homeHref}">Home</a>
+      <a class="${navClass(active === "labs")}" href="${labsHref}">Labs</a>
       <a class="${navClass(active === "plan")}" href="${homeHref}#start-plan">Start Plan</a>
       <a class="${navClass(active === "evidence")}" href="${homeHref}#evidence">Evidence</a>
     </nav>
@@ -855,6 +940,10 @@ function homePage() {
       </a>`;
     })
     .join("\n");
+  const labsTab = `<a href="labs.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+        <span class="grid h-4 w-4 place-items-center rounded bg-indigo-600 text-white"><i data-lucide="test-tube-2" class="h-3 w-3"></i></span>
+        Labs
+      </a>`;
   const snapshotRows = [
     {
       label: "Confirm first",
@@ -983,6 +1072,7 @@ function homePage() {
   <section class="border-y border-slate-200 bg-white">
     <div class="no-scrollbar mx-auto flex w-full max-w-5xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
       ${homeTabs}
+      ${labsTab}
     </div>
   </section>
 
@@ -1068,6 +1158,119 @@ function homePage() {
   });
 }
 
+function labsPage() {
+  const testRows = documentedTests
+    .map((row) => `<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">${escapeHtml(row.group)}</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-emerald-700">${escapeHtml(row.status)}</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2">${row.items.map((item) => chip(item, "slate")).join("")}</div>
+        <p class="mt-3 text-sm leading-6 text-slate-600">${modeText(row.why, row.plainWhy)}</p>
+      </div>
+    </div>`)
+    .join("\n");
+
+  const missingRows = missingTests
+    .map((row) => `<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">${escapeHtml(row.group)}</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-amber-700">${escapeHtml(row.priority)}</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2">${row.items.map((item) => chip(item, "amber")).join("")}</div>
+        <p class="mt-3 text-sm leading-6 text-slate-600">${modeText(row.why, row.plainWhy)}</p>
+      </div>
+    </div>`)
+    .join("\n");
+
+  const diagnosisTabs = diagnoses
+    .map((item) => {
+      const itemColor = colorMap[item.color];
+      return `<a href="diagnoses/${item.id}.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full ${itemColor.solid}"></span>
+        ${escapeHtml(shortTitle(item.title))}
+      </a>`;
+    })
+    .join("\n");
+
+  return layout({
+    title: "Labs and Missing Workup - Rasha Bakar",
+    active: "labs",
+    body: `<main class="relative">
+  <section class="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <div class="mb-5 inline-flex w-fit items-center gap-2 rounded-md border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-indigo-700">
+        <i data-lucide="test-tube-2" class="h-4 w-4"></i>
+        Labs and workup
+      </div>
+      <h1 class="break-words text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">${modeText("Lab checklist for interpreting the reports", "Blood tests and follow-up checklist")}</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-slate-600">${modeText("This separates tests already documented or ordered from additional labs worth discussing with clinicians to understand whether the findings connect.", "This shows what tests were already mentioned, what still may be missing, and why each group matters.")}</p>
+    </div>
+  </section>
+
+  <section class="sticky top-[73px] z-30 border-y border-slate-200 bg-white/95 backdrop-blur">
+    <div class="no-scrollbar mx-auto flex w-full max-w-5xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
+      ${diagnosisTabs}
+      <a href="labs.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-transparent bg-indigo-50 px-3 py-2 text-sm font-bold text-indigo-700">
+        <span class="grid h-4 w-4 place-items-center rounded bg-indigo-600 text-white"><i data-lucide="test-tube-2" class="h-3 w-3"></i></span>
+        Labs
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="grid gap-4 md:grid-cols-3">
+      <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-xs font-black uppercase tracking-wide text-slate-400">Already documented</p>
+        <p class="mt-2 text-3xl font-black text-slate-950">6</p>
+        <p class="mt-2 text-sm leading-6 text-slate-600">${modeText("Groups of tests or diagnostics appear in the reports as completed or ordered.", "Groups of tests are already mentioned in the reports.")}</p>
+      </div>
+      <div class="rounded-lg border border-amber-200 bg-amber-50 p-5 shadow-sm">
+        <p class="text-xs font-black uppercase tracking-wide text-amber-700">Highest next value</p>
+        <p class="mt-2 text-xl font-black text-amber-950">Rheumatology labs</p>
+        <p class="mt-2 text-sm leading-6 text-amber-900">${modeText("HLA-B27 plus autoimmune markers help interpret the sacroiliitis and multi-joint inflammation pattern.", "These tests help decide whether the joint findings are inflammatory or autoimmune.")}</p>
+      </div>
+      <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-xs font-black uppercase tracking-wide text-slate-400">Use this page for</p>
+        <p class="mt-2 text-xl font-black text-slate-950">Appointment prep</p>
+        <p class="mt-2 text-sm leading-6 text-slate-600">${modeText("Add result values and dates when available, then bring the checklist to rheumatology, dermatology, primary care, and ENT.", "Write results and dates here when you have them, then bring it to the doctors.")}</p>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-200 p-5">
+        <p class="text-sm font-black uppercase tracking-wide text-emerald-700">${modeText("Documented or already ordered", "Already mentioned in the reports")}</p>
+        <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950">${modeText("Tests and diagnostics already in the record", "Tests already ordered or completed")}</h2>
+        <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-600">${modeText("This does not confirm that every blood result has returned. It means the report record shows these were ordered, planned, or completed.", "This means the reports mention them. It does not mean we have every result yet.")}</p>
+      </div>
+      ${testRows}
+    </div>
+
+    <div class="mt-6 rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-200 p-5">
+        <p class="text-sm font-black uppercase tracking-wide text-amber-700">${modeText("Discuss if not already done", "Ask if still needed")}</p>
+        <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950">${modeText("Missing labs that could clarify the whole picture", "Missing tests that could help")}</h2>
+        <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-600">${modeText("These are not instructions to self-order tests. They are a focused discussion list for the treating clinicians, especially rheumatology and dermatology.", "Do not self-order these from this page. Use it as a question list for the doctors.")}</p>
+      </div>
+      ${missingRows}
+    </div>
+
+    <div class="mt-6 rounded-lg border border-indigo-200 bg-indigo-50 p-5 text-indigo-950">
+      <div class="flex items-start gap-3">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-indigo-600 text-white"><i data-lucide="clipboard-check" class="h-5 w-5"></i></span>
+        <div>
+          <h2 class="text-lg font-black">${modeText("What would make the reports easier to understand?", "What result would help most?")}</h2>
+          <p class="mt-2 text-sm leading-6">${modeText("The most useful missing information is whether inflammation markers and rheumatology markers support a single inflammatory condition connecting the SI joints, hip, knee, and back. The second most useful information is whether thyroid, iron, vitamin, or hormone abnormalities explain the hair findings.", "The biggest question is whether one inflammation problem connects the pelvis, hip, knee, and back. The next question is whether thyroid, iron, vitamins, or hormones explain the hair findings.")}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>`
+  });
+}
+
 function diagnosisPage(d) {
   const c = colorMap[d.color];
   const p = plainFor(d);
@@ -1081,6 +1284,10 @@ function diagnosisPage(d) {
       </a>`;
     })
     .join("\n");
+  const labsTab = `<a href="../labs.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="grid h-4 w-4 place-items-center rounded bg-indigo-600 text-white"><i data-lucide="test-tube-2" class="h-3 w-3"></i></span>
+        Labs
+      </a>`;
   return layout({
     title: `${d.title} - Rasha Bakar`,
     depth: "..",
@@ -1106,6 +1313,7 @@ function diagnosisPage(d) {
   <section class="sticky top-[73px] z-30 border-b border-slate-200 bg-white/95 backdrop-blur">
     <div class="no-scrollbar mx-auto flex w-full max-w-5xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
       ${diagnosisTabs}
+      ${labsTab}
     </div>
   </section>
 
@@ -1227,8 +1435,17 @@ function shortTitle(value) {
     .replace("Incidental Sacral, Coccyx, and Pelvic Findings", "Incidental");
 }
 
+function chip(label, tone = "slate") {
+  const classes =
+    tone === "amber"
+      ? "border-amber-200 bg-amber-50 text-amber-800"
+      : "border-slate-200 bg-slate-50 text-slate-700";
+  return `<span class="rounded-md border ${classes} px-2.5 py-1 text-xs font-bold">${escapeHtml(label)}</span>`;
+}
+
 await mkdir("diagnoses", { recursive: true });
 await writeFile("index.html", homePage(), "utf8");
+await writeFile("labs.html", labsPage(), "utf8");
 for (const diagnosis of diagnoses) {
   await writeFile(`diagnoses/${diagnosis.id}.html`, diagnosisPage(diagnosis), "utf8");
 }

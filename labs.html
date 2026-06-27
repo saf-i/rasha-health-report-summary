@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Labs and Missing Workup - Rasha Bakar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'] },
+          colors: { ink: '#0f172a', muted: '#64748b', line: '#e2e8f0', stripe: '#635bff', mint: '#00d4aa' },
+          boxShadow: { soft: '0 8px 24px rgba(15, 23, 42, 0.05)', lift: '0 14px 34px rgba(15, 23, 42, 0.08)' }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #fff; }
+    .grid-bg { display: none; }
+    .section-anchor { scroll-margin-top: 104px; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .table-wrap table { min-width: 760px; }
+    [data-mode-button][aria-pressed="true"] { background: #0f172a; color: #fff; border-color: #0f172a; }
+    @media (max-width: 760px) { .table-wrap { overflow-x: auto; } }
+  </style>
+</head>
+<body class="font-sans text-ink antialiased">
+  <div class="grid-bg pointer-events-none fixed inset-x-0 top-0 h-[520px]"></div>
+  <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
+  <div class="mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+    <a href="index.html" class="flex items-center gap-3">
+      <span class="grid h-9 w-9 place-items-center rounded-md bg-slate-950 text-xs font-black text-white">RB</span>
+      <span>
+        <span class="block text-sm font-black text-slate-950">Rasha Bakar</span>
+        <span class="block text-xs font-semibold text-slate-500">Clinical dashboard</span>
+      </span>
+    </a>
+    <nav class="no-scrollbar hidden items-center gap-2 overflow-x-auto md:flex">
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="index.html">Home</a>
+      <a class="rounded-md bg-slate-950 px-4 py-2 text-sm font-bold text-white" href="labs.html">Labs</a>
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="index.html#start-plan">Start Plan</a>
+      <a class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:border-slate-300 hover:bg-slate-50" href="index.html#evidence">Evidence</a>
+    </nav>
+    <div class="hidden items-center rounded-md border border-slate-200 bg-white p-1 sm:flex" aria-label="Reading mode">
+      <button type="button" data-mode-button="clinical" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="true">Clinical</button>
+      <button type="button" data-mode-button="plain" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="false">Plain</button>
+    </div>
+    <a href="index.html#diagnoses" class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-slate-800">
+      Diagnoses
+      <i data-lucide="arrow-right" class="h-4 w-4"></i>
+    </a>
+  </div>
+  <div class="border-t border-slate-200 px-4 py-2 sm:hidden">
+    <div class="mx-auto flex max-w-5xl items-center justify-between gap-3">
+      <span class="text-xs font-black uppercase tracking-wide text-slate-500">Reading mode</span>
+      <div class="flex items-center rounded-md border border-slate-200 bg-white p-1" aria-label="Reading mode">
+        <button type="button" data-mode-button="clinical" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="true">Clinical</button>
+        <button type="button" data-mode-button="plain" class="rounded px-3 py-1.5 text-xs font-black text-slate-600" aria-pressed="false">Plain</button>
+      </div>
+    </div>
+  </div>
+</header>
+  <main class="relative">
+  <section class="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <div class="mb-5 inline-flex w-fit items-center gap-2 rounded-md border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-black uppercase tracking-wide text-indigo-700">
+        <i data-lucide="test-tube-2" class="h-4 w-4"></i>
+        Labs and workup
+      </div>
+      <h1 class="break-words text-3xl font-black tracking-tight text-slate-950 sm:text-4xl"><span data-mode-text data-clinical="Lab checklist for interpreting the reports" data-plain="Blood tests and follow-up checklist">Lab checklist for interpreting the reports</span></h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-slate-600"><span data-mode-text data-clinical="This separates tests already documented or ordered from additional labs worth discussing with clinicians to understand whether the findings connect." data-plain="This shows what tests were already mentioned, what still may be missing, and why each group matters.">This separates tests already documented or ordered from additional labs worth discussing with clinicians to understand whether the findings connect.</span></p>
+    </div>
+  </section>
+
+  <section class="sticky top-[73px] z-30 border-y border-slate-200 bg-white/95 backdrop-blur">
+    <div class="no-scrollbar mx-auto flex w-full max-w-5xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
+      <a href="diagnoses/sacroiliitis.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+        Sacroiliitis
+      </a>
+<a href="diagnoses/hip-fai.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-sky-500"></span>
+        Hip FAI
+      </a>
+<a href="diagnoses/right-knee.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-cyan-500"></span>
+        Right Knee
+      </a>
+<a href="diagnoses/lumbar-discopathy.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+        Lumbar Spine
+      </a>
+<a href="diagnoses/telogen-effluvium.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+        Telogen Effluvium
+      </a>
+<a href="diagnoses/pityriasis-versicolor.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-lime-500"></span>
+        Pityriasis Versicolor
+      </a>
+<a href="diagnoses/eustachian-rhinitis.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-violet-500"></span>
+        ENT / Rhinitis
+      </a>
+<a href="diagnoses/incidental-findings.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-600 transition hover:bg-slate-50">
+        <span class="h-2 w-2 rounded-full bg-rose-500"></span>
+        Incidental
+      </a>
+      <a href="labs.html" class="inline-flex shrink-0 items-center gap-2 rounded-md border border-transparent bg-indigo-50 px-3 py-2 text-sm font-bold text-indigo-700">
+        <span class="grid h-4 w-4 place-items-center rounded bg-indigo-600 text-white"><i data-lucide="test-tube-2" class="h-3 w-3"></i></span>
+        Labs
+      </a>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
+    <div class="grid gap-4 md:grid-cols-3">
+      <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-xs font-black uppercase tracking-wide text-slate-400">Already documented</p>
+        <p class="mt-2 text-3xl font-black text-slate-950">6</p>
+        <p class="mt-2 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Groups of tests or diagnostics appear in the reports as completed or ordered." data-plain="Groups of tests are already mentioned in the reports.">Groups of tests or diagnostics appear in the reports as completed or ordered.</span></p>
+      </div>
+      <div class="rounded-lg border border-amber-200 bg-amber-50 p-5 shadow-sm">
+        <p class="text-xs font-black uppercase tracking-wide text-amber-700">Highest next value</p>
+        <p class="mt-2 text-xl font-black text-amber-950">Rheumatology labs</p>
+        <p class="mt-2 text-sm leading-6 text-amber-900"><span data-mode-text data-clinical="HLA-B27 plus autoimmune markers help interpret the sacroiliitis and multi-joint inflammation pattern." data-plain="These tests help decide whether the joint findings are inflammatory or autoimmune.">HLA-B27 plus autoimmune markers help interpret the sacroiliitis and multi-joint inflammation pattern.</span></p>
+      </div>
+      <div class="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+        <p class="text-xs font-black uppercase tracking-wide text-slate-400">Use this page for</p>
+        <p class="mt-2 text-xl font-black text-slate-950">Appointment prep</p>
+        <p class="mt-2 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Add result values and dates when available, then bring the checklist to rheumatology, dermatology, primary care, and ENT." data-plain="Write results and dates here when you have them, then bring it to the doctors.">Add result values and dates when available, then bring the checklist to rheumatology, dermatology, primary care, and ENT.</span></p>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-200 p-5">
+        <p class="text-sm font-black uppercase tracking-wide text-emerald-700"><span data-mode-text data-clinical="Documented or already ordered" data-plain="Already mentioned in the reports">Documented or already ordered</span></p>
+        <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950"><span data-mode-text data-clinical="Tests and diagnostics already in the record" data-plain="Tests already ordered or completed">Tests and diagnostics already in the record</span></h2>
+        <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="This does not confirm that every blood result has returned. It means the report record shows these were ordered, planned, or completed." data-plain="This means the reports mention them. It does not mean we have every result yet.">This does not confirm that every blood result has returned. It means the report record shows these were ordered, planned, or completed.</span></p>
+      </div>
+      <div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Inflammation / general labs</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-emerald-700">Ordered in dermatology report</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">CBC</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">CRP</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">ESR</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Screens for anemia, infection signals, and inflammation that could support or weaken the inflammatory-joint hypothesis." data-plain="Helps show whether there are signs of inflammation, infection, or blood-count problems.">Screens for anemia, infection signals, and inflammation that could support or weaken the inflammatory-joint hypothesis.</span></p>
+      </div>
+    </div>
+<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Hair-loss / nutrition labs</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-emerald-700">Ordered in dermatology report</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Ferritin</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Vitamin B12</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Folic acid</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Vitamin D 25-OH</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Biotin</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Checks common correctable contributors to diffuse hair shedding and fatigue-like symptoms." data-plain="Looks for low iron or vitamin problems that can make hair shedding worse.">Checks common correctable contributors to diffuse hair shedding and fatigue-like symptoms.</span></p>
+      </div>
+    </div>
+<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Thyroid labs</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-emerald-700">Ordered in dermatology report</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">TSH</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Free T4</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Thyroid disease can contribute to hair shedding, skin changes, fatigue, cycle changes, and temperature sensitivity." data-plain="Checks whether the thyroid is part of the hair or body-wide symptoms.">Thyroid disease can contribute to hair shedding, skin changes, fatigue, cycle changes, and temperature sensitivity.</span></p>
+      </div>
+    </div>
+<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Imaging already completed</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-emerald-700">Completed in reports</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Sacrum/SI MRI</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Hip MRI</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Right knee MRI</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Lumbar spine MRI</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Pelvis/right hip X-rays</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="These studies are the main evidence behind the sacroiliitis, hip, knee, and lumbar diagnoses." data-plain="These scans are the main reason the dashboard focuses on the pelvis, hip, knee, and back.">These studies are the main evidence behind the sacroiliitis, hip, knee, and lumbar diagnoses.</span></p>
+      </div>
+    </div>
+<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">ENT testing</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-emerald-700">Ordered by ENT</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Pure tone audiometry</span><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Eustachian tube function testing</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Clarifies whether ear clicking/fullness is linked to measurable hearing or pressure-function changes." data-plain="Checks whether the ear symptoms are affecting hearing or pressure balance.">Clarifies whether ear clicking/fullness is linked to measurable hearing or pressure-function changes.</span></p>
+      </div>
+    </div>
+<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Lymph-node follow-up</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-emerald-700">Ordered / planned if still needed</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-slate-200 bg-slate-50 text-slate-700 px-2.5 py-1 text-xs font-bold">Superficial tissue ultrasound for occipital/postauricular lymph nodes</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Helps characterize enlarged scalp/behind-ear lymph nodes if they persist." data-plain="Looks closer at the swollen nodes behind the scalp/ear if they are still present.">Helps characterize enlarged scalp/behind-ear lymph nodes if they persist.</span></p>
+      </div>
+    </div>
+    </div>
+
+    <div class="mt-6 rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-200 p-5">
+        <p class="text-sm font-black uppercase tracking-wide text-amber-700"><span data-mode-text data-clinical="Discuss if not already done" data-plain="Ask if still needed">Discuss if not already done</span></p>
+        <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950"><span data-mode-text data-clinical="Missing labs that could clarify the whole picture" data-plain="Missing tests that could help">Missing labs that could clarify the whole picture</span></h2>
+        <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="These are not instructions to self-order tests. They are a focused discussion list for the treating clinicians, especially rheumatology and dermatology." data-plain="Do not self-order these from this page. Use it as a question list for the doctors.">These are not instructions to self-order tests. They are a focused discussion list for the treating clinicians, especially rheumatology and dermatology.</span></p>
+      </div>
+      <div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Rheumatology autoimmune workup</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-amber-700">Highest yield</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">HLA-B27</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">ANA</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Rheumatoid factor (RF)</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Anti-CCP</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Repeat/confirm CRP and ESR if no results are available</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Helps evaluate axial spondyloarthritis, ankylosing spondylitis, psoriatic arthritis, rheumatoid-pattern disease, or another inflammatory arthritis." data-plain="Helps the rheumatologist decide whether the joint findings are from an inflammatory or autoimmune condition.">Helps evaluate axial spondyloarthritis, ankylosing spondylitis, psoriatic arthritis, rheumatoid-pattern disease, or another inflammatory arthritis.</span></p>
+      </div>
+    </div>
+<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Baseline safety / organ function</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-amber-700">Useful before treatment decisions</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">CMP</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Kidney function</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Liver enzymes</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Urinalysis if clinician thinks it fits</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Provides baseline organ data before medications and helps screen for broader systemic involvement." data-plain="Gives doctors a safe baseline before choosing medicines and checks kidney/liver health.">Provides baseline organ data before medications and helps screen for broader systemic involvement.</span></p>
+      </div>
+    </div>
+<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Iron detail</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-amber-700">Useful if ferritin is low or unclear</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Serum iron</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">TIBC</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Transferrin saturation</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Ferritin can be affected by inflammation, so a fuller iron panel may clarify true iron availability." data-plain="Gives a clearer answer about iron if ferritin alone is confusing.">Ferritin can be affected by inflammation, so a fuller iron panel may clarify true iron availability.</span></p>
+      </div>
+    </div>
+<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Hormone / androgen workup</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-amber-700">Discuss if chin hair growth, acne, irregular cycles, or PCOS concern exists</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Total/free testosterone</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">DHEA-S</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">LH/FSH</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Prolactin</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">A1c or fasting insulin if PCOS/metabolic risk is suspected</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Helps determine whether androgen excess or PCOS-like physiology is contributing to hair or skin findings." data-plain="Helps check whether hormone imbalance is part of the hair shedding or chin-hair growth.">Helps determine whether androgen excess or PCOS-like physiology is contributing to hair or skin findings.</span></p>
+      </div>
+    </div>
+<div class="grid gap-4 border-b border-slate-200 p-4 last:border-b-0 md:grid-cols-[190px_1fr]">
+      <div>
+        <p class="text-sm font-black text-slate-950">Infection screening before advanced rheumatology meds</p>
+        <p class="mt-1 text-xs font-bold uppercase tracking-wide text-amber-700">Only if treatment path requires it</p>
+      </div>
+      <div>
+        <div class="flex flex-wrap gap-2"><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">TB screening</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Hepatitis B/C</span><span class="rounded-md border border-amber-200 bg-amber-50 text-amber-800 px-2.5 py-1 text-xs font-bold">Other tests chosen by rheumatology</span></div>
+        <p class="mt-3 text-sm leading-6 text-slate-600"><span data-mode-text data-clinical="Often required before immunosuppressive therapy, but not usually the first test unless that treatment is being considered." data-plain="These may be needed later if stronger immune medicines are considered.">Often required before immunosuppressive therapy, but not usually the first test unless that treatment is being considered.</span></p>
+      </div>
+    </div>
+    </div>
+
+    <div class="mt-6 rounded-lg border border-indigo-200 bg-indigo-50 p-5 text-indigo-950">
+      <div class="flex items-start gap-3">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-md bg-indigo-600 text-white"><i data-lucide="clipboard-check" class="h-5 w-5"></i></span>
+        <div>
+          <h2 class="text-lg font-black"><span data-mode-text data-clinical="What would make the reports easier to understand?" data-plain="What result would help most?">What would make the reports easier to understand?</span></h2>
+          <p class="mt-2 text-sm leading-6"><span data-mode-text data-clinical="The most useful missing information is whether inflammation markers and rheumatology markers support a single inflammatory condition connecting the SI joints, hip, knee, and back. The second most useful information is whether thyroid, iron, vitamin, or hormone abnormalities explain the hair findings." data-plain="The biggest question is whether one inflammation problem connects the pelvis, hip, knee, and back. The next question is whether thyroid, iron, vitamins, or hormones explain the hair findings.">The most useful missing information is whether inflammation markers and rheumatology markers support a single inflammatory condition connecting the SI joints, hip, knee, and back. The second most useful information is whether thyroid, iron, vitamin, or hormone abnormalities explain the hair findings.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+  <footer class="border-t border-slate-200 bg-white">
+    <div class="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-slate-500 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+      <p>Educational synthesis from translated medical PDFs. Bring this to treating clinicians for confirmation and personalization.</p>
+      <p class="font-semibold">Not emergency advice. Seek urgent care for severe new symptoms.</p>
+    </div>
+  </footer>
+  <script>
+    function setReadingMode(mode) {
+      document.documentElement.dataset.readingMode = mode;
+      localStorage.setItem('readingMode', mode);
+      document.querySelectorAll('[data-mode-text]').forEach((node) => {
+        node.textContent = mode === 'plain' ? node.dataset.plain : node.dataset.clinical;
+      });
+      document.querySelectorAll('[data-mode-button]').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.modeButton === mode));
+      });
+    }
+    document.querySelectorAll('[data-mode-button]').forEach((button) => {
+      button.addEventListener('click', () => setReadingMode(button.dataset.modeButton));
+    });
+    setReadingMode(localStorage.getItem('readingMode') || 'clinical');
+    lucide.createIcons();
+  </script>
+</body>
+</html>
