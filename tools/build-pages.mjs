@@ -818,6 +818,57 @@ const missingTests = [
   }
 ];
 
+const diagnosisLearning = {
+  sacroiliitis: {
+    role: "The sacroiliac joints connect the lower spine to the pelvis and help transfer force between the upper body and legs.",
+    plainRole: "These are the joints where the lower spine meets the pelvis. They help carry body weight when standing and walking.",
+    meaning: "Sacroiliitis means those joints look inflamed or chronically irritated. In this set of reports, it is the main finding that could point to an inflammatory arthritis pattern.",
+    plainMeaning: "This means the pelvis-spine joints may be inflamed. It matters because it may not be simple wear and tear."
+  },
+  "hip-fai": {
+    role: "The hip joint is a ball-and-socket joint. The labrum is the soft rim that helps seal and stabilize the socket.",
+    plainRole: "The hip is a ball-and-socket joint. The labrum is a soft rim around the socket that helps the hip move smoothly.",
+    meaning: "Cam-type FAI means the hip shape can pinch during bending or rotation, which can irritate the labrum and surrounding soft tissues.",
+    plainMeaning: "The hip shape may pinch during certain movements and irritate the soft rim of the joint."
+  },
+  "right-knee": {
+    role: "The knee depends on fluid balance, ligament stability, meniscus cushioning, and kneecap tracking.",
+    plainRole: "The knee needs smooth tracking, stable ligaments, and the right amount of joint fluid to move comfortably.",
+    meaning: "Effusion and synovial thickening mean the knee is irritated and producing extra fluid. A Baker cyst is usually that fluid collecting behind the knee.",
+    plainMeaning: "The knee looks irritated and has extra fluid. The cyst behind the knee is usually a pocket of that fluid."
+  },
+  "lumbar-discopathy": {
+    role: "Lumbar discs cushion the lower spine and help the back bend, rotate, and absorb load.",
+    plainRole: "The lower-back discs are cushions between the spine bones.",
+    meaning: "Degenerative discopathy means the discs show early wear or bulging. The reassuring point is that no major nerve compression was reported.",
+    plainMeaning: "The lower-back cushions show some wear and bulging, but the report does not show a major pinched nerve."
+  },
+  "telogen-effluvium": {
+    role: "Hair follicles cycle between growth, resting, and shedding phases.",
+    plainRole: "Hair naturally cycles through growing and shedding phases.",
+    meaning: "Telogen effluvium is diffuse shedding when more follicles shift into the resting/shedding phase, often after stress, illness, deficiency, thyroid change, or hormonal shift.",
+    plainMeaning: "This is a common shedding pattern that can happen after stress on the body or from low iron, vitamins, thyroid, or hormone issues."
+  },
+  "pityriasis-versicolor": {
+    role: "Skin pigment can look uneven when surface yeast overgrows and affects the outer skin layer.",
+    plainRole: "A common surface yeast can make skin color look patchy.",
+    meaning: "Pityriasis versicolor is a superficial yeast-related rash. It is usually lower-risk but can recur.",
+    plainMeaning: "This is usually a common, surface-level skin rash that changes color and can come back."
+  },
+  "eustachian-rhinitis": {
+    role: "The Eustachian tube equalizes pressure between the ear and the back of the nose; nasal allergy swelling can block it.",
+    plainRole: "A small tube helps equalize ear pressure. Allergies can make it swollen or blocked.",
+    meaning: "Eustachian tube obstruction with allergic rhinitis means ear clicking/fullness may be driven by nasal inflammation rather than an ear-structure problem.",
+    plainMeaning: "The ear clicking or fullness may be coming from allergy-related nose swelling."
+  },
+  "incidental-findings": {
+    role: "Imaging often captures nearby anatomy beyond the main pain question.",
+    plainRole: "Scans often show extra nearby details that may or may not matter.",
+    meaning: "Incidental findings are scan observations that usually matter only if symptoms match them, such as tailbone pain or pelvic symptoms.",
+    plainMeaning: "These are extra scan findings. They usually matter only if they match symptoms."
+  }
+};
+
 function baseHead(title) {
   return `<!doctype html>
 <html lang="en">
@@ -1049,6 +1100,47 @@ function homePage() {
   const missingLabs = ["HLA-B27", "ANA", "RF", "Anti-CCP", "CRP", "ESR", "CBC", "CMP", "Ferritin", "Vitamin D", "Vitamin B12", "TSH / free T4", "Testosterone / DHEA-S if androgen excess is suspected"]
     .map((lab) => `<span class="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-700">${escapeHtml(lab)}</span>`)
     .join("\n");
+  const categoryMap = diagnoses.reduce((groups, diagnosis) => {
+    const category = diagnosis.category.split(" / ")[0];
+    groups[category] ??= [];
+    groups[category].push(diagnosis);
+    return groups;
+  }, {});
+  const categoryCards = Object.entries(categoryMap)
+    .map(([category, items]) => `<div class="rounded-lg border border-slate-200 bg-white shadow-sm">
+      <div class="border-b border-slate-200 px-4 py-3">
+        <p class="text-xs font-black uppercase tracking-wide text-indigo-600">${escapeHtml(category)}</p>
+      </div>
+      <div class="divide-y divide-slate-200">
+        ${items.map((d) => {
+          const c = colorMap[d.color];
+          const note = diagnosisLearning[d.id];
+          return `<a href="diagnoses/${d.id}.html" class="block p-4 hover:bg-slate-50">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div class="flex min-w-0 gap-3">
+                <span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${c.solid}"></span>
+                <div class="min-w-0">
+                  <h3 class="break-words text-base font-black text-slate-950">${escapeHtml(d.title)}</h3>
+                  <p class="mt-1 text-xs font-bold uppercase tracking-wide text-slate-400">${escapeHtml(d.report)}</p>
+                </div>
+              </div>
+              <span class="shrink-0 rounded-md ${c.badge} px-2.5 py-1 text-xs font-black">Severity ${d.severity}/10</span>
+            </div>
+            <div class="mt-4 grid gap-3 md:grid-cols-2">
+              <div>
+                <p class="text-xs font-black uppercase tracking-wide text-slate-400">${modeText("What it does", "Body part / system")}</p>
+                <p class="mt-1 text-sm leading-6 text-slate-600">${modeText(note.role, note.plainRole)}</p>
+              </div>
+              <div>
+                <p class="text-xs font-black uppercase tracking-wide text-slate-400">${modeText("What the diagnosis means", "What it means")}</p>
+                <p class="mt-1 text-sm leading-6 text-slate-600">${modeText(note.meaning, note.plainMeaning)}</p>
+              </div>
+            </div>
+          </a>`;
+        }).join("\n")}
+      </div>
+    </div>`)
+    .join("\n");
 
   return layout({
     title: "Rasha Bakar - Clinical Dashboard",
@@ -1084,6 +1176,17 @@ function homePage() {
         <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600">${modeText("A practical scan of what to confirm, what to treat together, and what can be monitored routinely.", "A quick view of what needs attention first and what can be followed more calmly.")}</p>
       </div>
       <div class="rounded-lg border border-slate-200 bg-white shadow-sm">${snapshotRows}</div>
+    </div>
+  </section>
+
+  <section class="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mb-5">
+      <p class="text-sm font-black uppercase tracking-wide text-indigo-600">${modeText("Diagnosis map", "Learning map")}</p>
+      <h2 class="mt-2 text-2xl font-black tracking-tight text-slate-950 sm:text-3xl">${modeText("Diagnoses grouped by clinical area", "What each report is talking about")}</h2>
+      <p class="mt-3 max-w-3xl text-sm leading-6 text-slate-600">${modeText("Each category below connects the diagnosis to its source report and explains the involved body part or system in practical terms.", "This groups the findings by doctor area and explains what each body part or system does in simpler language.")}</p>
+    </div>
+    <div class="grid gap-4">
+      ${categoryCards}
     </div>
   </section>
 
@@ -1146,9 +1249,9 @@ function homePage() {
       <h2 class="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Key findings from the PDFs.</h2>
       <div class="table-wrap mt-8 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
         <table class="w-full border-collapse text-left text-sm">
-          <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th class="px-5 py-4">Area</th><th class="px-5 py-4">Report</th><th class="px-5 py-4">Key finding</th></tr></thead>
+          <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th class="px-5 py-4">Category</th><th class="px-5 py-4">Diagnosis</th><th class="px-5 py-4">Report</th><th class="px-5 py-4">Key finding</th></tr></thead>
           <tbody class="divide-y divide-slate-200 text-slate-700">
-            ${diagnoses.map((d) => `<tr><td class="px-5 py-4 font-bold text-slate-950">${escapeHtml(d.title)}</td><td class="px-5 py-4">${escapeHtml(d.report)}</td><td class="px-5 py-4">${escapeHtml(d.summary)}</td></tr>`).join("\n")}
+            ${diagnoses.map((d) => `<tr><td class="px-5 py-4 font-bold text-slate-950">${escapeHtml(d.category)}</td><td class="px-5 py-4 font-bold text-slate-950">${escapeHtml(d.title)}</td><td class="px-5 py-4">${escapeHtml(d.report)}</td><td class="px-5 py-4">${escapeHtml(d.summary)}</td></tr>`).join("\n")}
           </tbody>
         </table>
       </div>
